@@ -34,10 +34,14 @@ import { Link } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <h1 className="text-center font-bold text-3xl">EntertainNow</h1>
-      <Home />
-      <Footer />
+    <div className="p-2">
+      <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
+        EntertainNow
+      </h1>
+      <div className="flex flex-col justify-between h-full">
+        <Home />
+        <Footer />
+      </div>
     </div>
   );
 }
