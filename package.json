@@ -1,25 +1,37 @@
 {
   "name": "entertainnow",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+  "description": "",
+  "main": "index.js",
   "devDependencies": {
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
-    "@vitejs/plugin-react": "^2.2.0",
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.18",
-    "tailwindcss": "^3.2.1",
-    "typescript": "^4.6.4",
-    "vite": "^3.2.0"
-  }
+    "@types/eslint": "^8.4.6",
+    "@types/prettier": "^2.7.1",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "concurrently": "^7.5.0",
+    "eslint": "^8.25.0",
+    "eslint-plugin-react": "^7.31.10",
+    "file-loader": "^6.2.0"
+  },
+  "scripts": {
+    "build": "cd client && npm run build",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "seed": "cd server && npm run seed",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd client && npm i && cd ../server && npm i",
+    "start": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheBigBookMan/EntertainNow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheBigBookMan/EntertainNow/issues"
+  },
+  "homepage": "https://github.com/TheBigBookMan/EntertainNow#readme"
 }
