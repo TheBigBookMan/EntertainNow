@@ -4,7 +4,7 @@ declare global {
   interface Criteria {
     genre: string;
     typeEntertainment: string;
-    rating: number;
+    rating: number | null;
     keyword: string;
   }
 }
