@@ -1,6 +1,8 @@
-// import Home from "./pages/Home";
-
-//Postgress database- relational for users and their favourites trailers
+import Home from "./pages/Home";
+import ListPage from "./pages/ListPage";
+import Favourites from "./pages/Favourites";
+import Footer from "./components/common/Footer";
+import { Link } from "react-router-dom";
 
 // Graphql api- sequelize ORM
 
@@ -24,11 +26,18 @@
 
 // using state so users that are logged in can view the trailers and favourite while users not logged in can only search
 
+//TODO add in a logo
+
+//TODO need to use Link from react-router-dom so when click on signup page the new page loaded is the listpage
+
+//TODO need Link for once user signs in they can click on favourites page and take to favourites
+
 function App() {
   return (
     <div>
-      {/* <Home /> */}
-      <h1>Hey</h1>
+      <h1 className="text-center font-bold text-3xl">EntertainNow</h1>
+      <Home />
+      <Footer />
     </div>
   );
 }
