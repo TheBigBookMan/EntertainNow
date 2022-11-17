@@ -8,12 +8,22 @@ import { useState } from "react";
 
 const Form = () => {
   const [keyword, setKeyword] = useState<string>("");
-  const [criteria, setCriteria] = useState<Criteria>();
+  const [criteria, setCriteria] = useState<Criteria>({
+    genre: "",
+    typeEntertainment: "",
+    rating: null,
+    keyword: "",
+  });
 
   //! fix up the e: type !!!!AVOID ANY!!!
   const onSubmit = (e: any) => {
     e.preventDefault();
-    console.log(keyword);
+    setCriteria({
+      genre: criteria.genre,
+      typeEntertainment: criteria.typeEntertainment,
+      rating: criteria.rating,
+      keyword,
+    });
   };
 
   return (
@@ -22,17 +32,46 @@ const Form = () => {
         Input criteria here
       </h1>
       <form className="flex flex-col gap-10 h-full">
-        <select>
+        <select
+          onChange={(e) =>
+            setCriteria({
+              genre: e.target.value,
+              typeEntertainment: criteria.typeEntertainment,
+              rating: criteria.rating,
+              keyword: criteria.keyword,
+            })
+          }
+        >
           <option value="" disabled selected hidden>
             Genre
           </option>
         </select>
-        <select>
+
+        <select
+          onChange={(e) =>
+            setCriteria({
+              genre: criteria.genre,
+              typeEntertainment: e.target.value,
+              rating: criteria.rating,
+              keyword: criteria.keyword,
+            })
+          }
+        >
           <option value="" disabled selected hidden>
             Type Entertainment
           </option>
         </select>
-        <select>
+
+        <select
+          onChange={(e) =>
+            setCriteria({
+              genre: criteria.genre,
+              typeEntertainment: criteria.typeEntertainment,
+              rating: e.target.value,
+              keyword: criteria.keyword,
+            })
+          }
+        >
           <option value="" disabled selected hidden>
             Rating
           </option>
