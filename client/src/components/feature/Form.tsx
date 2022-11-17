@@ -11,7 +11,7 @@ const Form = () => {
   const [criteria, setCriteria] = useState<Criteria>({
     genre: "",
     typeEntertainment: "",
-    rating: null,
+    rating: 0,
     keyword: "",
   });
 

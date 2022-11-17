@@ -2,7 +2,7 @@ import Form from "../components/feature/Form";
 
 const Home = () => {
   return (
-    <div className="h-[600px] flex flex-col gap-5 ">
+    <div className="h-[580px] flex flex-col gap-2">
       <h1>
         Type in entertainment criteria that you are looking for or search a
         title! A list of entertainment matching the input will present. If you
