@@ -22,7 +22,7 @@ const Form = ({ criteria, setCriteria }: any) => {
   };
 
   return (
-    <div className="border-solid border-2 rounded-lg p-2 shadow-lg h-full">
+    <div className="border-solid border-2 rounded-lg bg-zinc-100 p-2 shadow-lg h-full">
       <h1 className="font-bold text-zinc-400 text-center">
         Input criteria here
       </h1>

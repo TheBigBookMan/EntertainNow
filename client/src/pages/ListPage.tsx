@@ -8,6 +8,8 @@ const ListPage = ({ criteria }: any) => {
     getData(criteria);
   };
 
+  //! need to make variables reset to empty
+
   useEffect(() => {
     makeAPICall();
   }, []);
@@ -17,8 +19,15 @@ const ListPage = ({ criteria }: any) => {
   }
 
   return (
-    <div>
-      <h1>Entertainment List</h1>
+    <div className="border-solid border-2 rounded-lg bg-zinc-100 p-2 shadow-lg h-[500px]">
+      <ul className="flex flex-col h-[95%]">
+        <li className="flex flex-col">
+          <img />
+          <h1>Inception</h1>
+          <p>Rating</p>
+          <p>Bio</p>
+        </li>
+      </ul>
     </div>
   );
 };
