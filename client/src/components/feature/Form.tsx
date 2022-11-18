@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import getData from "../../hooks/IMDBAPI";
 
 // ? form info- search text, genre, rating, maybe look at what IMDB API has to offer
 
@@ -14,6 +15,13 @@ const Form = () => {
     rating: 0,
     keyword: "",
   });
+  const [call, setCall] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (call) {
+      makeAPICall();
+    }
+  }, [call]);
 
   //! fix up the e: type !!!!AVOID ANY!!!
   const onSubmit = (e: any) => {
@@ -24,6 +32,11 @@ const Form = () => {
       rating: criteria.rating,
       keyword,
     });
+    setCall(true);
+  };
+
+  const makeAPICall = () => {
+    getData(criteria);
   };
 
   return (
@@ -67,7 +80,7 @@ const Form = () => {
             setCriteria({
               genre: criteria.genre,
               typeEntertainment: criteria.typeEntertainment,
-              rating: e.target.value,
+              rating: Number(e.target.value),
               keyword: criteria.keyword,
             })
           }
@@ -76,6 +89,8 @@ const Form = () => {
             Rating
           </option>
         </select>
+
+        {/* ADD IN SELECT FOR TV SHOW OR MOVIE */}
 
         <input
           value={keyword}
