@@ -1,6 +1,7 @@
 import Form from "../components/feature/Form";
 
-const Home = () => {
+//! GET RID OF ANY
+const Home = ({ criteria, setCriteria }: any) => {
   return (
     <div className="h-[580px] flex flex-col gap-2">
       <h1>
@@ -10,7 +11,7 @@ const Home = () => {
         also save the trailer to favourites to watch at a later date! Happy
         searching...
       </h1>
-      <Form />
+      <Form criteria={criteria} setCriteria={setCriteria} />
     </div>
   );
 };

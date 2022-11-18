@@ -3,6 +3,7 @@ import ListPage from "./pages/ListPage";
 import Favourites from "./pages/Favourites";
 import Footer from "./components/common/Footer";
 import { Link, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 // Graphql api- sequelize ORM
 
@@ -33,6 +34,13 @@ import { Link, Routes, Route } from "react-router-dom";
 //TODO need Link for once user signs in they can click on favourites page and take to favourites
 
 function App() {
+  const [criteria, setCriteria] = useState<Criteria>({
+    genre: "",
+    typeEntertainment: "",
+    rating: 0,
+    title: "",
+  });
+
   return (
     <div className="p-2">
       <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
@@ -40,8 +48,11 @@ function App() {
       </h1>
       <div className="flex flex-col justify-between h-full">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="list" element={<ListPage />} />
+          <Route
+            path="/"
+            element={<Home criteria={criteria} setCriteria={setCriteria} />}
+          />
+          <Route path="list" element={<ListPage criteria={criteria} />} />
           <Route path="favourites" element={<Favourites />} />
         </Routes>
         <Footer />

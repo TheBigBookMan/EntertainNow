@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import getData from "../../hooks/IMDBAPI";
 import {
   genreData,
   entertainmentData,
@@ -7,40 +6,19 @@ import {
 } from "../../utils/formOptions";
 import { Link } from "react-router-dom";
 
-//TODO add Link from react-rtouer-dom for the onbutton submit which wil ltake to the list page and have loading spinner while list loads
-
-//TODO put option list into maps into the select options
-
-const Form = () => {
+//! FIX THE ANY!!!
+const Form = ({ criteria, setCriteria }: any) => {
   const [keyword, setKeyword] = useState<string>("");
-  const [criteria, setCriteria] = useState<Criteria>({
-    genre: "",
-    typeEntertainment: "",
-    rating: 0,
-    title: "",
-  });
-  const [call, setCall] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (call) {
-      makeAPICall();
-    }
-  }, [call]);
 
   //! fix up the e: type !!!!AVOID ANY!!!
   const onSubmit = (e: any) => {
-    e.preventDefault();
+    // e.preventDefault();
     setCriteria({
       genre: criteria.genre,
       typeEntertainment: criteria.typeEntertainment,
       rating: criteria.rating,
       title: keyword,
     });
-    setCall(true);
-  };
-
-  const makeAPICall = () => {
-    getData(criteria);
   };
 
   return (

@@ -14,7 +14,6 @@ const getData = async (criteria: Criteria) => {
       criteria.typeEntertainment = "tv_series";
     }
 
-    console.log(criteria);
     const { data } = await axios.get(
       `https://imdb-api.com/API/AdvancedSearch/k_q5dx85dn?title=${criteria.title}&user_rating=${criteria.rating},10&title_type=${criteria.typeEntertainment}&genres=${criteria.genre}`
     );
