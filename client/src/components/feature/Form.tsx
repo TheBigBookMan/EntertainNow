@@ -13,7 +13,7 @@ const Form = () => {
     genre: "",
     typeEntertainment: "",
     rating: 0,
-    keyword: "",
+    title: "",
   });
   const [call, setCall] = useState<boolean>(false);
 
@@ -30,7 +30,7 @@ const Form = () => {
       genre: criteria.genre,
       typeEntertainment: criteria.typeEntertainment,
       rating: criteria.rating,
-      keyword,
+      title: keyword,
     });
     setCall(true);
   };
@@ -51,7 +51,7 @@ const Form = () => {
               genre: e.target.value,
               typeEntertainment: criteria.typeEntertainment,
               rating: criteria.rating,
-              keyword: criteria.keyword,
+              title: criteria.title,
             })
           }
         >
@@ -66,7 +66,7 @@ const Form = () => {
               genre: criteria.genre,
               typeEntertainment: e.target.value,
               rating: criteria.rating,
-              keyword: criteria.keyword,
+              title: criteria.title,
             })
           }
         >
@@ -81,7 +81,7 @@ const Form = () => {
               genre: criteria.genre,
               typeEntertainment: criteria.typeEntertainment,
               rating: Number(e.target.value),
-              keyword: criteria.keyword,
+              title: criteria.title,
             })
           }
         >

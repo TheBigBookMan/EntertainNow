@@ -5,6 +5,6 @@ declare global {
     genre: string;
     typeEntertainment: string;
     rating: number;
-    keyword: string;
+    title: string;
   }
 }
