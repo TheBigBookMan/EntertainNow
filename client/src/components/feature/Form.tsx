@@ -5,6 +5,7 @@ import {
   entertainmentData,
   ratingData,
 } from "../../utils/formOptions";
+import { Link } from "react-router-dom";
 
 //TODO add Link from react-rtouer-dom for the onbutton submit which wil ltake to the list page and have loading spinner while list loads
 
@@ -47,8 +48,9 @@ const Form = () => {
       <h1 className="font-bold text-zinc-400 text-center">
         Input criteria here
       </h1>
-      <form className="flex flex-col gap-10 h-full">
+      <form className="flex flex-col justify-around h-full font-bold text-lg">
         <select
+          className="border-solid border-2 border-zinc-200 rounded-lg h-[40px]"
           onChange={(e) =>
             setCriteria({
               genre: e.target.value,
@@ -62,11 +64,14 @@ const Form = () => {
             Genre
           </option>
           {genreData.map((genre) => (
-            <option value={genre}>{genre}</option>
+            <option value={genre} key={genre}>
+              {genre}
+            </option>
           ))}
         </select>
 
         <select
+          className="border-solid border-2 border-zinc-200 rounded-lg h-[40px]"
           onChange={(e) =>
             setCriteria({
               genre: criteria.genre,
@@ -80,11 +85,14 @@ const Form = () => {
             Type Entertainment
           </option>
           {entertainmentData.map((type) => (
-            <option value={type}>{type}</option>
+            <option value={type} key={type}>
+              {type}
+            </option>
           ))}
         </select>
 
         <select
+          className="border-solid border-2 border-zinc-200 rounded-lg h-[40px]"
           onChange={(e) =>
             setCriteria({
               genre: criteria.genre,
@@ -98,27 +106,26 @@ const Form = () => {
             Rating
           </option>
           {ratingData.map((rating) => (
-            <option value={rating}>{rating}</option>
+            <option value={rating} key={rating}>
+              {rating}
+            </option>
           ))}
         </select>
-
-        {/* ADD IN SELECT FOR TV SHOW OR MOVIE */}
-
         <input
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           type="text"
-          placeholder="Keyword"
+          placeholder="Title"
           className="border-solid border-2 rounded-lg pl-2"
         />
-
-        <button
-          onClick={onSubmit}
+        <Link
+          onClick={(e) => onSubmit(e)}
+          to={"/list"}
           type="submit"
-          className="border-solid border-black border-2 rounded-lg bg-zinc-200 hover:bg-zinc-400 h-[40px] transition-all"
+          className="border-solid border-black border-2 rounded-lg bg-zinc-200 hover:bg-zinc-400 h-[40px] transition-all items-center justify-center flex"
         >
           Search
-        </button>
+        </Link>
       </form>
     </div>
   );

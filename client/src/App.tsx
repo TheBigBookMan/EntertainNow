@@ -2,7 +2,7 @@ import Home from "./pages/Home";
 import ListPage from "./pages/ListPage";
 import Favourites from "./pages/Favourites";
 import Footer from "./components/common/Footer";
-import { Link } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
 
 // Graphql api- sequelize ORM
 
@@ -39,7 +39,11 @@ function App() {
         EntertainNow
       </h1>
       <div className="flex flex-col justify-between h-full">
-        <Home />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="list" element={<ListPage />} />
+          <Route path="favourites" element={<Favourites />} />
+        </Routes>
         <Footer />
       </div>
     </div>
