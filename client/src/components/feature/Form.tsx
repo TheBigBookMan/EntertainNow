@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import getData from "../../hooks/IMDBAPI";
-
-// ? form info- search text, genre, rating, maybe look at what IMDB API has to offer
+import {
+  genreData,
+  entertainmentData,
+  ratingData,
+} from "../../utils/formOptions";
 
 //TODO add Link from react-rtouer-dom for the onbutton submit which wil ltake to the list page and have loading spinner while list loads
 
@@ -58,6 +61,9 @@ const Form = () => {
           <option value="" disabled selected hidden>
             Genre
           </option>
+          {genreData.map((genre) => (
+            <option value={genre}>{genre}</option>
+          ))}
         </select>
 
         <select
@@ -73,6 +79,9 @@ const Form = () => {
           <option value="" disabled selected hidden>
             Type Entertainment
           </option>
+          {entertainmentData.map((type) => (
+            <option value={type}>{type}</option>
+          ))}
         </select>
 
         <select
@@ -88,6 +97,9 @@ const Form = () => {
           <option value="" disabled selected hidden>
             Rating
           </option>
+          {ratingData.map((rating) => (
+            <option value={rating}>{rating}</option>
+          ))}
         </select>
 
         {/* ADD IN SELECT FOR TV SHOW OR MOVIE */}
