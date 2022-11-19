@@ -3,9 +3,17 @@ const { User, Favourite } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
-  Query: {},
+  Query: {
+    // User:
+    //Favourites
+  },
 
-  Mutation: {},
+  Mutation: {
+    // addUser:
+    //login:
+    // addFavourite:
+    //removeFavourite:
+  },
 };
 
 module.exports = resolvers;
