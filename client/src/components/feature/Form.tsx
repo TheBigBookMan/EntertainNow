@@ -11,7 +11,12 @@ const Form = ({ criteria, setCriteria }: any) => {
   const [keyword, setKeyword] = useState<string>("");
 
   //! fix up the e: type !!!!AVOID ANY!!!
-  const onSubmit = (e: any) => {
+  /**
+   *
+   * @param e takes in the event listener button
+   * @returns nothing
+   */
+  const onSubmit = (e: any): void => {
     // e.preventDefault();
     setCriteria({
       genre: criteria.genre,

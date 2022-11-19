@@ -1,11 +1,19 @@
 import getData from "../hooks/IMDBAPI";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
-  console.log(criteria);
-  const makeAPICall = () => {
-    getData(criteria);
+  const [movieList, setMovieList] = useState<string[]>([]);
+  /**
+   * no params
+   * returns nothing
+   */
+
+  //! change any
+  const makeAPICall = async (): Promise<void> => {
+    const response = await getData(criteria);
+    console.log(response);
+    setMovieList(response);
   };
 
   //! need to make variables reset to empty
@@ -16,6 +24,13 @@ const ListPage = ({ criteria }: any) => {
 
   {
     /* PUT IN A CANT USE COMONENET FOR IF USER IS LOGGED IN*/
+  }
+
+  // * info needed from fetch response (content-Rating: G, Pg etc; description- year made; genres- string of genres; imDbRating- rating; image- poster image; plot- movie plt; stars- string of stars names; title- title)
+
+  // TODO add in loading spinner
+  if (movieList.length === 0) {
+    return <div>Loading...</div>;
   }
 
   return (
