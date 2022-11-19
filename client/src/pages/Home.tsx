@@ -1,9 +1,10 @@
 import Form from "../components/feature/Form";
+import Container from "../components/common/Container";
 
 //! GET RID OF ANY
 const Home = ({ criteria, setCriteria }: any) => {
   return (
-    <div className="h-[580px] flex flex-col gap-2">
+    <Container>
       <h1>
         Type in entertainment criteria that you are looking for or search a
         title! A list of entertainment matching the input will present. If you
@@ -12,7 +13,7 @@ const Home = ({ criteria, setCriteria }: any) => {
         searching...
       </h1>
       <Form criteria={criteria} setCriteria={setCriteria} />
-    </div>
+    </Container>
   );
 };
 

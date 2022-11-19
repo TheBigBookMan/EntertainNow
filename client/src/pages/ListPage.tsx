@@ -1,8 +1,11 @@
 import getData from "../hooks/IMDBAPI";
 import { useEffect, useState } from "react";
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
+import Container from "../components/common/Container";
 
 // TODO make context for favourites array
+
+//!!!!! IF RENDERS WEIRD ITS BECAUSE OF IMPORT CONTAINER
 
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
@@ -38,7 +41,7 @@ const ListPage = ({ criteria }: any) => {
 
   //TODO add in a star icon for rating as well
   return (
-    <div className="border-solid border-2 rounded-lg bg-zinc-100 p-2 shadow-lg h-[580px]">
+    <Container>
       <ul className="flex flex-col h-full overflow-y-scroll">
         {movieList.map((movie) => {
           return (
@@ -60,7 +63,7 @@ const ListPage = ({ criteria }: any) => {
           );
         })}
       </ul>
-    </div>
+    </Container>
   );
 };
 
