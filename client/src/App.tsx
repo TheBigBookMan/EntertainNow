@@ -6,6 +6,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import { Link, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import { FavouriteProvider } from "./contexts/FavouritesContext";
 
 // Graphql api- sequelize ORM
 
@@ -52,17 +53,20 @@ function App() {
       </Link>
 
       <div className="flex flex-col justify-between h-full">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home criteria={criteria} setCriteria={setCriteria} />}
-          />
-          <Route path="list" element={<ListPage criteria={criteria} />} />
-          <Route path="favourites" element={<Favourites />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
-        </Routes>
-        <Footer />
+        <FavouriteProvider>
+          <Routes>
+            <Route
+              path="/"
+              element={<Home criteria={criteria} setCriteria={setCriteria} />}
+            />
+            <Route path="list" element={<ListPage criteria={criteria} />} />
+            <Route path="favourites" element={<Favourites />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
+          </Routes>
+
+          <Footer />
+        </FavouriteProvider>
       </div>
     </div>
   );

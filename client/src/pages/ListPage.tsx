@@ -1,7 +1,9 @@
 import getData from "../hooks/IMDBAPI";
 import { useEffect, useState } from "react";
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
+import { AiFillStar } from "react-icons/ai";
 import Container from "../components/common/Container";
+import { useFavouriteContext } from "../contexts/FavouritesContext";
 
 // TODO make context for favourites array
 
@@ -10,6 +12,7 @@ import Container from "../components/common/Container";
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
   const [movieList, setMovieList] = useState<MovieProps[]>([]);
+  const { favourites, addFavourite, removeFavourite } = useFavouriteContext();
   /**
    * no params
    * returns nothing
@@ -53,7 +56,9 @@ const ListPage = ({ criteria }: any) => {
                 <BsSuitHeart />
               </div>
               <div className="flex gap-5">
-                <p>{movie.imDbRating}</p>
+                <p className="flex items-center">
+                  {movie.imDbRating} <AiFillStar />
+                </p>
                 <p>{movie.contentRating}</p>
               </div>
               <p className="text-sm italic">{movie.genres}</p>
