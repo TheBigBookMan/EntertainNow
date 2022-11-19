@@ -31,9 +31,9 @@ const Form = ({ criteria, setCriteria }: any) => {
       <h1 className="font-bold text-zinc-400 text-center">
         Input criteria here
       </h1>
-      <form className="flex flex-col justify-around h-full font-bold text-lg">
+      <form className="flex flex-col justify-around h-full text-lg">
         <select
-          className="border-solid border-2 border-zinc-200 rounded-lg h-[40px]"
+          className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"
           onChange={(e) =>
             setCriteria({
               genre: e.target.value,
@@ -54,7 +54,7 @@ const Form = ({ criteria, setCriteria }: any) => {
         </select>
 
         <select
-          className="border-solid border-2 border-zinc-200 rounded-lg h-[40px]"
+          className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"
           onChange={(e) =>
             setCriteria({
               genre: criteria.genre,
@@ -75,7 +75,7 @@ const Form = ({ criteria, setCriteria }: any) => {
         </select>
 
         <select
-          className="border-solid border-2 border-zinc-200 rounded-lg h-[40px]"
+          className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"
           onChange={(e) =>
             setCriteria({
               genre: criteria.genre,
@@ -105,7 +105,7 @@ const Form = ({ criteria, setCriteria }: any) => {
           onClick={(e) => onSubmit(e)}
           to={"/list"}
           type="submit"
-          className="border-solid border-black border-2 rounded-lg bg-zinc-200 hover:bg-zinc-400 h-[40px] transition-all items-center justify-center flex"
+          className=" rounded-lg bg-zinc-200 hover:bg-zinc-400 h-[40px] transition-all items-center justify-center flex"
         >
           Search
         </Link>
