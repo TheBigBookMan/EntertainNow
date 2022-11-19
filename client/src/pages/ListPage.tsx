@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import Container from "../components/common/Container";
-import { useFavouriteContext } from "../contexts/FavouritesContext";
 
 // TODO make context for favourites array
 
@@ -12,7 +11,9 @@ import { useFavouriteContext } from "../contexts/FavouritesContext";
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
   const [movieList, setMovieList] = useState<MovieProps[]>([]);
-  const { favourites, addFavourite, removeFavourite } = useFavouriteContext();
+
+  // TODO have the add favourite and remove favourite mutation
+
   /**
    * no params
    * returns nothing

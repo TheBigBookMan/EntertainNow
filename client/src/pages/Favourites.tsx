@@ -1,18 +1,18 @@
 import Container from "../components/common/Container";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
-import { useFavouriteContext } from "../contexts/FavouritesContext";
 
 const Favourites = () => {
   // TODO add star react icon for rating
-  const { favourites, removeFavourite } = useFavouriteContext();
+
+  // TODO get favourites from graphql using query
 
   //!!! need to figure out the map of favourites type--- NOT ANY!!
 
   return (
     <Container>
       <h1 className="font-bold text-2xl text-center">Favourites</h1>
-      {favourites.length === 0 ? (
+      {/* {favourites.length === 0 ? (
         <div>You don't have any favourites, yet...</div>
       ) : (
         <>
@@ -38,7 +38,7 @@ const Favourites = () => {
             })}
           </ul>
         </>
-      )}
+      )} */}
     </Container>
   );
 };
