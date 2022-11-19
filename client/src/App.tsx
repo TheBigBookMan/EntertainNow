@@ -2,6 +2,8 @@ import Home from "./pages/Home";
 import ListPage from "./pages/ListPage";
 import Favourites from "./pages/Favourites";
 import Footer from "./components/common/Footer";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import { Link, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -43,9 +45,12 @@ function App() {
 
   return (
     <div className="p-2">
-      <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
-        EntertainNow
-      </h1>
+      <Link to="/">
+        <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
+          EntertainNow
+        </h1>
+      </Link>
+
       <div className="flex flex-col justify-between h-full">
         <Routes>
           <Route
@@ -54,6 +59,8 @@ function App() {
           />
           <Route path="list" element={<ListPage criteria={criteria} />} />
           <Route path="favourites" element={<Favourites />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
         </Routes>
         <Footer />
       </div>
