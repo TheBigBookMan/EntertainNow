@@ -27,11 +27,11 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
   };
 
   return (
-    <div className="border-solid border-2 rounded-lg bg-zinc-100 p-2 shadow-lg h-full">
+    <div className="border-solid border-2 rounded-lg bg-zinc-100 p-2 m-1 shadow-lg h-full">
       <h1 className="font-bold text-zinc-400 text-center">
         Input criteria here
       </h1>
-      <form className="flex flex-col justify-around h-full text-lg">
+      <form className="flex flex-col justify-around h-full text-lg pb-5">
         <select
           className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"
           onChange={(e) =>
@@ -105,7 +105,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
           onClick={(e) => onSubmit(e)}
           to={"/list"}
           type="submit"
-          className=" rounded-lg bg-zinc-200 hover:bg-zinc-400 h-[40px] transition-all items-center justify-center flex"
+          className=" rounded-lg bg-zinc-200 hover:bg-zinc-300 h-[40px] transition-all items-center justify-center flex"
         >
           Search
         </Link>
