@@ -1,8 +1,10 @@
+import Container from "../components/common/Container";
+
 const Favourites = () => {
   return (
-    <div>
+    <Container>
       <h1>Favourites</h1>
-    </div>
+    </Container>
   );
 };
 

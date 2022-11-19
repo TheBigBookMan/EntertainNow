@@ -1,8 +1,10 @@
+import Container from "../components/common/Container";
+
 const SignUp = () => {
   return (
-    <div>
+    <Container>
       <h1>Sign Up</h1>
-    </div>
+    </Container>
   );
 };
 
