@@ -1,16 +1,8 @@
 import getData from "../hooks/IMDBAPI";
 import { useEffect, useState } from "react";
+import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 
-interface MovieProps {
-  image: string;
-  title: string;
-  description: string;
-  imDbRating: string;
-  contentRating: string;
-  genres: string;
-  stars: string;
-  plot: string;
-}
+// TODO make context for favourites array
 
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
@@ -48,20 +40,25 @@ const ListPage = ({ criteria }: any) => {
   return (
     <div className="border-solid border-2 rounded-lg bg-zinc-100 p-2 shadow-lg h-[580px]">
       <ul className="flex flex-col h-full overflow-y-scroll">
-        <li className="flex flex-col items-center border-b-2 p-1 h-[550px] overflow-y-hidden">
-          <img src={movieList[0].image} className="w-52" />
-          <div className="flex items-center gap-2">
-            <h1 className="font-bold text-xl">{movieList[0].title}</h1>
-            <p className="italic">{movieList[0].description}</p>
-          </div>
-          <div className="flex gap-5">
-            <p>{movieList[0].imDbRating}</p>
-            <p>{movieList[0].contentRating}</p>
-          </div>
-          <p className="text-sm italic">{movieList[0].genres}</p>
-          <p className="text-sm">{movieList[0].stars}</p>
-          <p>{movieList[0].plot}</p>
-        </li>
+        {movieList.map((movie) => {
+          return (
+            <li className="flex flex-col items-center border-b-2 p-1 h-[550px] overflow-y-hidden">
+              <img src={movie.image} className="w-52" />
+              <div className="flex items-center gap-2">
+                <h1 className="font-bold text-xl">{movie.title}</h1>
+                <p className="italic">{movie.description}</p>
+                <BsSuitHeart />
+              </div>
+              <div className="flex gap-5">
+                <p>{movie.imDbRating}</p>
+                <p>{movie.contentRating}</p>
+              </div>
+              <p className="text-sm italic">{movie.genres}</p>
+              <p className="text-sm">{movie.stars}</p>
+              <p>{movie.plot}</p>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
