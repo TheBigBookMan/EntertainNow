@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 
 //! FIX THE ANY!!!
-const Form = ({ criteria, setCriteria }: any) => {
+const Form = ({ criteria, setCriteria }: CriteriaState) => {
   const [keyword, setKeyword] = useState<string>("");
 
   //! fix up the e: type !!!!AVOID ANY!!!

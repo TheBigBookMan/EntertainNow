@@ -18,4 +18,9 @@ declare global {
     stars: string;
     plot: string;
   }
+
+  interface CriteriaState {
+    criteria: Criteria;
+    setCriteria: (criteria: Criteria) => void;
+  }
 }
