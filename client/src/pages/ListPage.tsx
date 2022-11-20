@@ -47,14 +47,17 @@ const ListPage = ({ criteria }: any) => {
   return (
     <Container>
       <ul className="flex flex-col h-full overflow-y-scroll">
-        {movieList.map((movie) => {
+        {movieList.map((movie, index) => {
           return (
-            <li className="flex flex-col items-center border-b-2 p-1 h-[550px] overflow-y-hidden">
+            <li
+              key={movie.title + index}
+              className="flex flex-col items-center border-b-2 mb-2 p-1 h-[550px] "
+            >
               <img src={movie.image} className="w-52" />
               <div className="flex items-center gap-2">
                 <h1 className="font-bold text-xl">{movie.title}</h1>
                 <p className="italic">{movie.description}</p>
-                <BsSuitHeart />
+                <BsSuitHeart className="hover:cursor-pointer hover:text-lg" />
               </div>
               <div className="flex gap-5">
                 <p className="flex items-center">
@@ -64,7 +67,7 @@ const ListPage = ({ criteria }: any) => {
               </div>
               <p className="text-sm italic">{movie.genres}</p>
               <p className="text-sm">{movie.stars}</p>
-              <p>{movie.plot}</p>
+              <p className="overflow-y-scroll">{movie.plot}</p>
             </li>
           );
         })}
