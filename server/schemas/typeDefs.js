@@ -24,7 +24,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    Favourites(username: String!): [Favourite]
+    favourites(username: String!): [Favourite]
     me: User
   }
 

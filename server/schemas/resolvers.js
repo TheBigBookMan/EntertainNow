@@ -4,8 +4,16 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    // me:
-    //Favourites
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate("favourites");
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    favourites: async (parent, args, { user: userId }) => {
+      const user = await User.findById(userId).populate("favourites");
+      return user.favourites;
+    },
   },
 
   Mutation: {
