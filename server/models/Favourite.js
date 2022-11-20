@@ -23,6 +23,10 @@ const favouriteSchema = new Schema({
     type: String,
     required: true,
   },
+  youtube: {
+    type: String,
+    required: true,
+  },
 });
 
 const Favourite = model("Favourite", favouriteSchema);
