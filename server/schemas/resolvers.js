@@ -36,7 +36,10 @@ const resolvers = {
       { title, description, imDbRating, contentRating, image, youtube },
       { user }
     ) => {
-      if (!user) throw new AuthenticationError("No user logged in");
+      if (!user)
+        throw new AuthenticationError(
+          "You need to be logged in to add to favourites"
+        );
       const favourite = await Favourite.create({
         title,
         description,
@@ -47,12 +50,26 @@ const resolvers = {
       });
       let updateUser = await User.findByIdAndUpdate(
         user,
-        { $push: { favourites: { $each: [{ favourite: favourite._id }] } } },
+        { $addToSet: { favourites: favourite._id } },
         { new: true }
       );
       return updateUser;
     },
-    //removeFavourite:
+    removeFavourite: async (parent, { favouriteId }, context) => {
+      if (context.user) {
+        const favourite = await Favourite.findOneAndDelete({
+          _id: favouriteId,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { favourites: favourite._id } }
+        );
+        return favourite;
+      }
+
+      throw new AuthenticationError("You need to be logged in");
+    },
   },
 };
 
