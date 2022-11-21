@@ -31,7 +31,27 @@ const resolvers = {
       const token = signToken(user);
       return { user, token };
     },
-    // addFavourite:
+    addFavourite: async (
+      parent,
+      { title, description, imDbRating, contentRating, image, youtube },
+      { user }
+    ) => {
+      if (!user) throw new AuthenticationError("No user logged in");
+      const favourite = await Favourite.create({
+        title,
+        description,
+        imDbRating,
+        contentRating,
+        image,
+        youtube,
+      });
+      let updateUser = await User.findByIdAndUpdate(
+        user,
+        { $push: { favourites: { $each: [{ favourite: favourite._id }] } } },
+        { new: true }
+      );
+      return updateUser;
+    },
     //removeFavourite:
   },
 };
