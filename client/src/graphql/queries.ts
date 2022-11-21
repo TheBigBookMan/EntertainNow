@@ -58,3 +58,45 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const ADD_FAVOURITE = gql`
+  mutation AddFavourite(
+    $title: String!
+    $description: String!
+    $imDbRating: String!
+    $contentRating: String!
+    $image: String!
+    $youtube: String!
+  ) {
+    addFavourite(
+      title: $title
+      description: $description
+      imDbRating: $imDbRating
+      contentRating: $contentRating
+      image: $image
+      youtube: $youtube
+    ) {
+      _id
+      title
+      description
+      imDbRating
+      contentRating
+      image
+      youtube
+    }
+  }
+`;
+
+export const REMOVE_FAVOURITE = gql`
+  mutation RemoveFavourite($favouriteId: ID!) {
+    removeFavourite(favouriteId: $favouriteId) {
+      _id
+      title
+      description
+      imDbRating
+      contentRating
+      image
+      youtube
+    }
+  }
+`;
