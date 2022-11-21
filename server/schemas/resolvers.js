@@ -17,8 +17,20 @@ const resolvers = {
   },
 
   Mutation: {
-    // addUser:
-    //login:
+    addUser: async (parent, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+      return { token, user };
+    },
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
+      if (!user)
+        throw new AuthenticationError("No user found with this username.");
+      if (!(await user.isCorrectPassword(password)))
+        throw new AuthenticationError("Incorrect credentials.");
+      const token = signToken(user);
+      return { user, token };
+    },
     // addFavourite:
     //removeFavourite:
   },
