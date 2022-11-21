@@ -16,6 +16,7 @@ const typeDefs = gql`
     imDbRating: String
     contentRating: String
     image: String
+    youtube: String
   }
 
   type Auth {
@@ -31,7 +32,14 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, password: String!, email: String!): Auth
     login(username: String!, password: String!): Auth
-    addFavourite(favouriteId: ID!): Favourite
+    addFavourite(
+      title: String!
+      description: String!
+      imDbRating: String!
+      contentRating: String!
+      image: String!
+      youtube: String!
+    ): Favourite
     removeFavourite(favouriteId: ID!): Favourite
   }
 `;
