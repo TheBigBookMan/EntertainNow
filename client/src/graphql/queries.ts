@@ -59,6 +59,26 @@ export const LOGIN = gql`
   }
 `;
 
+export const QUERY_ME = gql`
+  query Me {
+    me {
+      _id
+      username
+      password
+      email
+      favourites {
+        _id
+        title
+        description
+        imDbRating
+        contentRating
+        image
+        youtube
+      }
+    }
+  }
+`;
+
 export const ADD_FAVOURITE = gql`
   mutation AddFavourite(
     $title: String!
