@@ -1,6 +1,32 @@
 import Container from "../components/common/Container";
+import { useState } from "react";
+import { ADD_USER } from "../graphql/queries";
+import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const nav = useNavigate();
+  const [formInfo, setFormInfo] = useState<UserInfo>({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const inputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFormInfo((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(formInfo);
+    addUser({ variables: { ...formInfo } });
+    nav("/");
+  };
+
   return (
     <Container>
       <h1 className="text-center font-bold text-2xl">Sign Up</h1>
@@ -11,17 +37,36 @@ const SignUp = () => {
       <form className="flex flex-col gap-5 mt-3">
         <label className="flex flex-col font-bold">
           Username
-          <input type="text" className="rounded-lg pl-2 h-[30px]" />
+          <input
+            type="text"
+            name="username"
+            value={formInfo.username}
+            onChange={inputChange}
+            className="rounded-lg pl-2 h-[30px]"
+          />
         </label>
         <label className="flex flex-col font-bold">
           Email
-          <input type="email" className="rounded-lg pl-2 h-[30px]" />
+          <input
+            name="email"
+            value={formInfo.email}
+            onChange={inputChange}
+            type="email"
+            className="rounded-lg pl-2 h-[30px]"
+          />
         </label>
         <label className="flex flex-col font-bold">
           Password
-          <input type="password" className="rounded-lg pl-2 h-[30px]" />
+          <input
+            name="password"
+            value={formInfo.password}
+            onChange={inputChange}
+            type="password"
+            className="rounded-lg pl-2 h-[30px]"
+          />
         </label>
         <button
+          onClick={onSubmit}
           type="submit"
           className=" rounded-lg bg-zinc-200 hover:bg-zinc-400 h-[40px] transition-all items-center justify-center flex"
         >

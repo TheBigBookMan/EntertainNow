@@ -23,4 +23,10 @@ declare global {
     criteria: Criteria;
     setCriteria: (criteria: Criteria) => void;
   }
+
+  interface UserInfo {
+    username: string;
+    email: string;
+    password: string;
+  }
 }
