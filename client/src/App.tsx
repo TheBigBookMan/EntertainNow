@@ -6,16 +6,9 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import { Link, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-
-// Graphql api- sequelize ORM
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // React front end -try some interesting react libraries that could be animation or something cool
-
-// Maybe try bootstrap for easy and good looking UI
-
-// Mobile first
-
-// Typescript
 
 // Ombd API for movie info and filter options to then search etc and then use youtube API for the trailer
 
@@ -31,9 +24,10 @@ import { useState } from "react";
 
 //TODO add in a logo
 
-//TODO need to use Link from react-router-dom so when click on signup page the new page loaded is the listpage
-
-//TODO need Link for once user signs in they can click on favourites page and take to favourites
+const client = new ApolloClient({
+  uri: "/graphql",
+  cache: new InMemoryCache(),
+});
 
 function App() {
   const [criteria, setCriteria] = useState<Criteria>({
@@ -44,28 +38,30 @@ function App() {
   });
 
   return (
-    <div className="p-2">
-      <Link to="/">
-        <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
-          EntertainNow
-        </h1>
-      </Link>
+    <ApolloProvider client={client}>
+      <div className="p-2">
+        <Link to="/">
+          <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
+            EntertainNow
+          </h1>
+        </Link>
 
-      <div className="flex flex-col justify-between h-full">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home criteria={criteria} setCriteria={setCriteria} />}
-          />
-          <Route path="list" element={<ListPage criteria={criteria} />} />
-          <Route path="favourites" element={<Favourites />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
-        </Routes>
+        <div className="flex flex-col justify-between h-full">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home criteria={criteria} setCriteria={setCriteria} />}
+            />
+            <Route path="list" element={<ListPage criteria={criteria} />} />
+            <Route path="favourites" element={<Favourites />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
+          </Routes>
 
-        <Footer />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </ApolloProvider>
   );
 }
 
