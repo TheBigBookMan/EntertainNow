@@ -31,6 +31,10 @@ const resolvers = {
       const token = signToken(user);
       return { user, token };
     },
+    logout: async (parent, args, { user }) => {
+      if (!user) false;
+      return true;
+    },
     addFavourite: async (
       parent,
       { title, description, imDbRating, contentRating, image, youtube },
