@@ -5,6 +5,7 @@ import { ADD_USER, LOGIN, LOGOUT } from "../graphql/queries";
 interface CtxUser {
   user: UserInfo | null;
   isLoggedIn: boolean;
+  loading: boolean;
   signUpUser: (newUser: NewUser) => void;
   loginUser: ({
     username,
@@ -33,23 +34,53 @@ export const UseUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: Prototypes) => {
   const [user, setUser] = useState<UserInfo | null>(localUser);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [signUpMutation, { data: signUpData, loading }] = useMutation(ADD_USER);
+  const [loginMutation, { data: loginData }] = useMutation(LOGIN);
+  const [logoutMutation] = useMutation(LOGOUT);
 
-  const signUpUser = () => {
-    //* change isloggedin to true
+  useEffect(() => {
+    if (signUpData) {
+      authenticateUser(signUpData.addUser);
+    }
+  }, [signUpData]);
+
+  useEffect(() => {
+    if (loginData) {
+      authenticateUser(loginData.login);
+    }
+  }, [loginData]);
+
+  // * adds a new user through the mutation
+  const signUpUser = (newUser: NewUser) => {
+    signUpMutation({ variables: { ...newUser } });
   };
 
-  const loginUser = () => {
-    //* change isloggedin to true
+  //* calls the login mutation with the passed in variables
+  const loginUser = ({
+    username,
+    password,
+  }: {
+    username: string;
+    password: string;
+  }) => {
+    loginMutation({ variables: { username, password } });
   };
 
+  //* sets the user to null
   const logoutUser = () => {
-    //* change isloggedin to false
+    logoutMutation();
+    setUser(null);
   };
+
+  const authenticateUser = (user: UserInfo) => {
+    setUser(user);
+  };
+
+  let isLoggedIn = user ? true : false;
 
   return (
     <UserContext.Provider
-      value={{ user, isLoggedIn, signUpUser, loginUser, logoutUser }}
+      value={{ user, isLoggedIn, loading, signUpUser, loginUser, logoutUser }}
     >
       {children}
     </UserContext.Provider>
