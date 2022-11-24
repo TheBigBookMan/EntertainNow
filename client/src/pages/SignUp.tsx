@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ADD_USER } from "../graphql/queries";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
+import { UseUserContext } from "../contexts/UserContext";
 
 const SignUp = () => {
   const nav = useNavigate();
@@ -11,7 +12,7 @@ const SignUp = () => {
     password: "",
     email: "",
   });
-  const [addUser, { error, loading }] = useMutation(ADD_USER);
+  const { signUpUser, user } = UseUserContext();
 
   const inputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormInfo((prevState) => ({
@@ -24,14 +25,14 @@ const SignUp = () => {
     try {
       e.preventDefault();
       console.log(formInfo);
-      const { data } = await addUser({ variables: { ...formInfo } });
+      const { data } = await signUpUser({ variables: { ...formInfo } });
       // nav("/");
       console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(error);
+  console.log(user);
   return (
     <Container>
       <h1 className="text-center font-bold text-2xl">Sign Up</h1>

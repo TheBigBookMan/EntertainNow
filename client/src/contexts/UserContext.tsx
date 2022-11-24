@@ -28,6 +28,8 @@ interface Prototypes {
 }
 
 const localUser = JSON.parse(localStorage.getItem("user") as string) || null;
+
+//! need to find out how to create a generic that can create an object to fix so its not null--- function that extends it and get that working, might have to call function in the provider
 const UserContext = createContext<CtxUser | null>(null);
 
 export const UseUserContext = () => useContext(UserContext);
