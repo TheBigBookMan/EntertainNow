@@ -15,22 +15,13 @@ export const GET_FAVOURITES = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation AddUser($username: String!, $password: String!, $email: String!) {
+  mutation addUser($username: String!, $password: String!, $email: String!) {
     addUser(username: $username, password: $password, email: $email) {
       user {
         _id
         username
         password
         email
-        favourites {
-          _id
-          title
-          description
-          imDbRating
-          contentRating
-          image
-          youtube
-        }
       }
       token
     }

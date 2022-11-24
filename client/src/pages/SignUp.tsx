@@ -8,10 +8,10 @@ const SignUp = () => {
   const nav = useNavigate();
   const [formInfo, setFormInfo] = useState<UserInfo>({
     username: "",
-    email: "",
     password: "",
+    email: "",
   });
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser, { error, loading }] = useMutation(ADD_USER);
 
   const inputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormInfo((prevState) => ({
@@ -20,13 +20,18 @@ const SignUp = () => {
     }));
   };
 
-  const onSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    console.log(formInfo);
-    addUser({ variables: { ...formInfo } });
-    nav("/");
+  const onSubmit = async (e: { preventDefault: () => void }) => {
+    try {
+      e.preventDefault();
+      console.log(formInfo);
+      const { data } = await addUser({ variables: { ...formInfo } });
+      // nav("/");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  console.log(error);
   return (
     <Container>
       <h1 className="text-center font-bold text-2xl">Sign Up</h1>
@@ -70,9 +75,10 @@ const SignUp = () => {
           type="submit"
           className=" rounded-lg bg-zinc-200 hover:bg-zinc-400 h-[40px] transition-all items-center justify-center flex"
         >
-          Submit
+          {loading ? "Loading..." : "Submit"}
         </button>
       </form>
+      {error && <div>Something went wrong, please try again...</div>}
     </Container>
   );
 };

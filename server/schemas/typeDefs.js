@@ -20,12 +20,13 @@ const typeDefs = gql`
   }
 
   type Auth {
-    token: ID!
+    token: ID
     user: User
   }
 
   type Query {
     favourites(userId: ID!): [Favourite]
+    user(username: String!): User
     me: User
   }
 

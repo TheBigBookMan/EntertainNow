@@ -6,7 +6,12 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import { Link, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
 
 // React front end -try some interesting react libraries that could be animation or something cool
 
@@ -24,8 +29,12 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 //TODO add in a logo
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: "/graphql",
+});
+
+const client = new ApolloClient({
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
