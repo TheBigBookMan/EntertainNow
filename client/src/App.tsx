@@ -12,6 +12,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
+import { UserProvider } from "./contexts/UserContext";
 
 // React front end -try some interesting react libraries that could be animation or something cool
 
@@ -48,28 +49,30 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div className="p-2">
-        <Link to="/">
-          <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
-            EntertainNow
-          </h1>
-        </Link>
+      <UserProvider>
+        <div className="p-2">
+          <Link to="/">
+            <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1">
+              EntertainNow
+            </h1>
+          </Link>
 
-        <div className="flex flex-col justify-between h-full">
-          <Routes>
-            <Route
-              path="/"
-              element={<Home criteria={criteria} setCriteria={setCriteria} />}
-            />
-            <Route path="list" element={<ListPage criteria={criteria} />} />
-            <Route path="favourites" element={<Favourites />} />
-            <Route path="signin" element={<SignIn />} />
-            <Route path="signup" element={<SignUp />} />
-          </Routes>
+          <div className="flex flex-col justify-between h-full">
+            <Routes>
+              <Route
+                path="/"
+                element={<Home criteria={criteria} setCriteria={setCriteria} />}
+              />
+              <Route path="list" element={<ListPage criteria={criteria} />} />
+              <Route path="favourites" element={<Favourites />} />
+              <Route path="signin" element={<SignIn />} />
+              <Route path="signup" element={<SignUp />} />
+            </Routes>
 
-          <Footer />
+            <Footer />
+          </div>
         </div>
-      </div>
+      </UserProvider>
     </ApolloProvider>
   );
 }
