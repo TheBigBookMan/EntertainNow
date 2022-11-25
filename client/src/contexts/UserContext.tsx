@@ -31,10 +31,6 @@ interface Prototypes {
 const localUser = JSON.parse(localStorage.getItem("user") as string) || null;
 const [useCtx, UserProvider] = createCtx<CtxUser>();
 
-//! need to find out how to create a generic that can create an object to fix so its not null--- function that extends it and get that working, might have to call function in the provider
-// const UserContext = createContext<CtxUser | null>(null);
-// export const UseUserContext = () => useContext(UserContext) as CtxUser;
-
 export const Provider = ({ children }: Prototypes) => {
   const [user, setUser] = useState<UserInfo | null>(localUser);
   const [signUpMutation, { data: signUpData, loading }] = useMutation(ADD_USER);

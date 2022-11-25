@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Favourite } = require("../models");
-const { signToken } = require("../utils/auth");
+const { signToken, setCookie } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -17,22 +17,25 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, password, email }) => {
+    addUser: async (parent, { username, password, email }, { res }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
-      return { token, user };
+      setCookie(res, token);
+      return user;
     },
-    login: async (parent, { username, password }) => {
+    login: async (parent, { username, password }, { res }) => {
       const user = await User.findOne({ username });
       if (!user)
         throw new AuthenticationError("No user found with this username.");
       if (!(await user.isCorrectPassword(password)))
         throw new AuthenticationError("Incorrect credentials.");
       const token = signToken(user);
-      return { user, token };
+      setCookie(res, token);
+      return user;
     },
-    logout: async (parent, args, { user }) => {
+    logout: async (parent, args, { res, user }) => {
       if (!user) false;
+      res.clearCookie("token");
       return true;
     },
     addFavourite: async (
