@@ -37,8 +37,6 @@ export const Provider = ({ children }: Prototypes) => {
   const [loginMutation, { data: loginData }] = useMutation(LOGIN);
   const [logoutMutation] = useMutation(LOGOUT);
 
-  console.log(user);
-
   // ? When user state changes, it is stored onto localstorage as the user
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
