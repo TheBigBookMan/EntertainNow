@@ -1,6 +1,7 @@
 import { useEffect, useState, createContext, useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER, LOGIN, LOGOUT } from "../graphql/queries";
+import createCtx from "./index";
 
 interface CtxUser {
   user: UserInfo | null;
@@ -28,24 +29,32 @@ interface Prototypes {
 }
 
 const localUser = JSON.parse(localStorage.getItem("user") as string) || null;
+const [useCtx, UserProvider] = createCtx<CtxUser>();
 
 //! need to find out how to create a generic that can create an object to fix so its not null--- function that extends it and get that working, might have to call function in the provider
-const UserContext = createContext<CtxUser | null>(null);
+// const UserContext = createContext<CtxUser | null>(null);
+// export const UseUserContext = () => useContext(UserContext) as CtxUser;
 
-export const UseUserContext = () => useContext(UserContext);
-
-export const UserProvider = ({ children }: Prototypes) => {
+export const Provider = ({ children }: Prototypes) => {
   const [user, setUser] = useState<UserInfo | null>(localUser);
   const [signUpMutation, { data: signUpData, loading }] = useMutation(ADD_USER);
   const [loginMutation, { data: loginData }] = useMutation(LOGIN);
   const [logoutMutation] = useMutation(LOGOUT);
 
+  // ? When user state changes, it is stored onto localstorage as the user
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
+  //? Once the signup data changes it is added to user state
   useEffect(() => {
     if (signUpData) {
+      console.log(signUpData);
       authenticateUser(signUpData.addUser);
     }
   }, [signUpData]);
 
+  //? Once the login data is changed it is added to use state
   useEffect(() => {
     if (loginData) {
       authenticateUser(loginData.login);
@@ -81,10 +90,12 @@ export const UserProvider = ({ children }: Prototypes) => {
   let isLoggedIn = user ? true : false;
 
   return (
-    <UserContext.Provider
+    <UserProvider
       value={{ user, isLoggedIn, loading, signUpUser, loginUser, logoutUser }}
     >
       {children}
-    </UserContext.Provider>
+    </UserProvider>
   );
 };
+
+export default useCtx;

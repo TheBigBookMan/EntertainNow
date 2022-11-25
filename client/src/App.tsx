@@ -12,7 +12,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from "@apollo/client";
-import { UserProvider } from "./contexts/UserContext";
+import { Provider as UserProvider } from "./contexts/UserContext";
 
 // React front end -try some interesting react libraries that could be animation or something cool
 

@@ -1,9 +1,7 @@
 import Container from "../components/common/Container";
 import { useState } from "react";
-import { ADD_USER } from "../graphql/queries";
-import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
-import { UseUserContext } from "../contexts/UserContext";
+import UseUserContext from "../contexts/UserContext";
 
 const SignUp = () => {
   const nav = useNavigate();
@@ -12,7 +10,7 @@ const SignUp = () => {
     password: "",
     email: "",
   });
-  const { signUpUser, user } = UseUserContext();
+  const { signUpUser, user, loading } = UseUserContext();
 
   const inputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormInfo((prevState) => ({
@@ -25,14 +23,14 @@ const SignUp = () => {
     try {
       e.preventDefault();
       console.log(formInfo);
-      const { data } = await signUpUser({ variables: { ...formInfo } });
+      signUpUser({ ...formInfo });
       // nav("/");
-      console.log(data);
+      console.log(user);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(user);
+  // console.log(user);
   return (
     <Container>
       <h1 className="text-center font-bold text-2xl">Sign Up</h1>
@@ -79,7 +77,6 @@ const SignUp = () => {
           {loading ? "Loading..." : "Submit"}
         </button>
       </form>
-      {error && <div>Something went wrong, please try again...</div>}
     </Container>
   );
 };
