@@ -54,6 +54,7 @@ export const Provider = ({ children }: Prototypes) => {
   //? Once the login data is changed it is added to use state
   useEffect(() => {
     if (loginData) {
+      console.log(loginData);
       authenticateUser(loginData.login);
     }
   }, [loginData]);

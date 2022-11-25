@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import UseUserContext from "../../contexts/UserContext";
 
 const Footer = () => {
-  const { isLoggedIn, logoutUser } = UseUserContext();
+  const { isLoggedIn, logoutUser, user } = UseUserContext();
+  console.log(user);
   return (
     <div className="flex justify-between items-center p-2 pt-3">
       {isLoggedIn ? (

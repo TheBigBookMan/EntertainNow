@@ -31,7 +31,7 @@ const resolvers = {
         throw new AuthenticationError("Incorrect credentials.");
       const token = signToken(user);
       setCookie(res, token);
-      return user;
+      return { user };
     },
     logout: async (parent, args, { res, user }) => {
       if (!user) false;
