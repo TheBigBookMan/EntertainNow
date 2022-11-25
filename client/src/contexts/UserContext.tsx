@@ -45,7 +45,6 @@ export const Provider = ({ children }: Prototypes) => {
   //? Once the signup data changes it is added to user state
   useEffect(() => {
     if (signUpData) {
-      console.log(signUpData);
       authenticateUser(signUpData.addUser);
     }
   }, [signUpData]);

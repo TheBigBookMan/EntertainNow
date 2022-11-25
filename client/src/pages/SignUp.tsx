@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import UseUserContext from "../contexts/UserContext";
 
 const SignUp = () => {
+  let isValid = true;
   const nav = useNavigate();
   const [formInfo, setFormInfo] = useState<UserInfo>({
     username: "",
@@ -22,10 +23,17 @@ const SignUp = () => {
   const onSubmit = async (e: { preventDefault: () => void }) => {
     try {
       e.preventDefault();
-      console.log(formInfo);
+
+      if (
+        formInfo.username === "" ||
+        formInfo.password === "" ||
+        formInfo.email === ""
+      ) {
+        isValid = false;
+        throw "Needs to have areas filled out.";
+      }
       signUpUser({ ...formInfo });
-      // nav("/");
-      console.log(user);
+      nav("/");
     } catch (error) {
       console.log(error);
     }
@@ -77,6 +85,7 @@ const SignUp = () => {
           {loading ? "Loading..." : "Submit"}
         </button>
       </form>
+      {!isValid && <div>All 3 fields need to be filled out.</div>}
     </Container>
   );
 };
