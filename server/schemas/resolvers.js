@@ -21,7 +21,7 @@ const resolvers = {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       setCookie(res, token);
-      return user;
+      return { user };
     },
     login: async (parent, { username, password }, { res }) => {
       const user = await User.findOne({ username });

@@ -4,8 +4,10 @@ const secret = process.env.JWT_SECRET;
 const expiration = "24h";
 const TOKEN_AGE = 1000 * 60 * 60 * 24;
 
+if (!secret) throw new Error("JWT_SECRET missing from server .env file");
+
 module.exports = {
-  authMiddleware: function (req, res) {
+  authMiddleware: function ({ req, res }) {
     let token =
       req.body.token ||
       req.query.token ||
@@ -23,16 +25,15 @@ module.exports = {
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch (error) {
+    } catch {
       res.clearCookie("token");
       console.log("Invalid token");
-      console.log(error);
     }
 
     return req;
   },
-  signToken: function ({ username, email, _id }) {
-    const payload = { username, email, _id };
+  signToken: function ({ _id }) {
+    const payload = { _id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
   setCookie: function (res, token) {

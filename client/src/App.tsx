@@ -10,7 +10,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  createHttpLink,
+  HttpLink,
 } from "@apollo/client";
 import { Provider as UserProvider } from "./contexts/UserContext";
 
@@ -30,8 +30,8 @@ import { Provider as UserProvider } from "./contexts/UserContext";
 
 //TODO add in a logo
 
-const httpLink = createHttpLink({
-  uri: "/graphql",
+const httpLink = new HttpLink({
+  uri: "http://localhost:3001/graphql",
 });
 
 const client = new ApolloClient({
@@ -60,7 +60,7 @@ function App() {
           <div className="flex flex-col justify-between h-full">
             <Routes>
               <Route
-                path="/"
+                index
                 element={<Home criteria={criteria} setCriteria={setCriteria} />}
               />
               <Route path="list" element={<ListPage criteria={criteria} />} />
