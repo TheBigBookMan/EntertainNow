@@ -12,6 +12,7 @@ const SignUp = () => {
     email: "",
   });
   const { signUpUser, user, loading } = UseUserContext();
+  let notValid;
 
   const inputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormInfo((prevState) => ({
@@ -19,6 +20,8 @@ const SignUp = () => {
       [e.target.name]: e.target.value,
     }));
   };
+
+  //TODO add in validators for the length of username, password etc to display on screen to user
 
   const onSubmit = async (e: { preventDefault: () => void }) => {
     try {
@@ -30,7 +33,7 @@ const SignUp = () => {
         formInfo.email === ""
       ) {
         isValid = false;
-        throw "Needs to have areas filled out.";
+        throw "Needs to have all areas filled out.";
       }
       signUpUser({ ...formInfo });
       nav("/");
