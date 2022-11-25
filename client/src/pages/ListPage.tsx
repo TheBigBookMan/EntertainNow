@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import Container from "../components/common/Container";
+import { ADD_FAVOURITE, REMOVE_FAVOURITE } from "../graphql/queries";
+import { useMutation } from "@apollo/client";
 
 // TODO make context for favourites array
 
@@ -14,12 +16,6 @@ const ListPage = ({ criteria }: any) => {
 
   // TODO have the add favourite and remove favourite mutation
 
-  /**
-   * no params
-   * returns nothing
-   */
-
-  //! change any
   const makeAPICall = async (): Promise<void> => {
     const response = await getData(criteria);
     console.log(response);

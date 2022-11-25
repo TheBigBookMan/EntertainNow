@@ -1,6 +1,8 @@
 import Container from "../components/common/Container";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
+import { REMOVE_FAVOURITE, GET_FAVOURITES } from "../graphql/queries";
+import { useMutation, useQuery } from "@apollo/client";
 
 const Favourites = () => {
   // TODO add star react icon for rating

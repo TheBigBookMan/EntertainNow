@@ -41,7 +41,6 @@ const SignUp = () => {
       console.log(error);
     }
   };
-  // console.log(user);
   return (
     <Container>
       <h1 className="text-center font-bold text-2xl">Sign Up</h1>
