@@ -29,4 +29,9 @@ declare global {
     email: string;
     password: string;
   }
+
+  interface YoutubeCriteria {
+    title: string;
+    year: string;
+  }
 }
