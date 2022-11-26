@@ -19,6 +19,15 @@ declare global {
     plot: string;
   }
 
+  interface FavouriteProps {
+    title: string;
+    description: string;
+    imDbRating: string;
+    contentRating: string;
+    image: string;
+    youtube: string;
+  }
+
   interface CriteriaState {
     criteria: Criteria;
     setCriteria: (criteria: Criteria) => void;

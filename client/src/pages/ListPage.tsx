@@ -36,10 +36,18 @@ const ListPage = ({ criteria }: any) => {
 
   const addToFavourite = async (input: MovieProps) => {
     const url = await fetchYoutube(input.title, input.description);
-    console.log(url);
     // TODO get matching data for the favourite props from the input
-    const { data } = await addFavourite();
+    const variables = {
+      title: input.title,
+      description: input.description,
+      imDbRating: input.imDbRating,
+      contentRating: input.contentRating,
+      image: input.image,
+      youtube: url,
+    };
+    const { data } = await addFavourite({ variables });
     console.log(data);
+    if (error) console.log(error);
   };
 
   // * info needed from fetch response (contentRating: G, Pg etc; description- year made; genres- string of genres; imDbRating- rating; image- poster image; plot- movie plt; stars- string of stars names; title- title)
