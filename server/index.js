@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
-const { authMiddleware } = require("./utils/auth");
+const { gqlAuthMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 
@@ -42,4 +42,4 @@ const startApolloServer = async (typeDefs, resolvers, context) => {
   });
 };
 
-startApolloServer(typeDefs, resolvers, authMiddleware);
+startApolloServer(typeDefs, resolvers, gqlAuthMiddleware);
