@@ -36,6 +36,7 @@ const ListPage = ({ criteria }: any) => {
 
   const addToFavourite = async (input: MovieProps) => {
     const url = await fetchYoutube(input.title, input.description);
+    console.log(url);
     // TODO get matching data for the favourite props from the input
     const { data } = await addFavourite();
     console.log(data);

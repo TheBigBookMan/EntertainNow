@@ -28,6 +28,8 @@ import { Provider as UserProvider } from "./contexts/UserContext";
 
 // using state so users that are logged in can view the trailers and favourite while users not logged in can only search
 
+//TODO add comments to important functionalities
+
 //TODO add in a logo
 
 const httpLink = new HttpLink({
