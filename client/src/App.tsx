@@ -10,7 +10,7 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  HttpLink,
+  createHttpLink,
 } from "@apollo/client";
 import { Provider as UserProvider } from "./contexts/UserContext";
 
@@ -32,7 +32,7 @@ import { Provider as UserProvider } from "./contexts/UserContext";
 
 //TODO add in a logo
 
-const httpLink = new HttpLink({
+const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
 });
 

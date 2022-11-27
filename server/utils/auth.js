@@ -46,7 +46,7 @@ module.exports = {
   },
   setCookie: function (res, token) {
     res.cookie("token", token, {
-      httpOnly: true,
+      httpOnly: false,
       maxAge: TOKEN_AGE,
     });
     // console.log(res);
