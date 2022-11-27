@@ -21,7 +21,7 @@ const resolvers = {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       setCookie(res, token);
-      return user;
+      return { user, token };
     },
     login: async (parent, { username, password }, { res }) => {
       const user = await User.findOne({ username });
@@ -31,10 +31,13 @@ const resolvers = {
         throw new AuthenticationError("Incorrect credentials.");
       const token = signToken(user);
       setCookie(res, token);
-      return user;
+      return { user, token };
     },
     logout: async (parent, args, { res, user }) => {
-      if (!user) false;
+      if (!user) {
+        return false;
+      }
+
       res.clearCookie("token");
       return true;
     },

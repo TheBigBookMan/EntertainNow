@@ -24,9 +24,12 @@ const authMiddleware = (req, res) => {
   try {
     const { data } = jwt.verify(token, secret, { maxAge: expiration });
     req.user = data;
-  } catch {
+    console.log("req user");
+    console.log(req.user);
+  } catch (error) {
     res.clearCookie("token");
     console.log("Invalid token");
+    console.log(error);
   }
 
   return req;
@@ -46,5 +49,6 @@ module.exports = {
       httpOnly: true,
       maxAge: TOKEN_AGE,
     });
+    // console.log(res);
   },
 };
