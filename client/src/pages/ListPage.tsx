@@ -22,6 +22,7 @@ const ListPage = ({ criteria }: any) => {
       refetchQueries: [{ query: GET_FAVOURITES }],
     }
   );
+  const [removeFavourite] = useMutation(REMOVE_FAVOURITE);
   const { data: UsersFavourites } = useQuery(GET_FAVOURITES);
   const { isLoggedIn } = useCtx();
   const listOfFavourites = UsersFavourites?.favourites;
@@ -70,6 +71,14 @@ const ListPage = ({ criteria }: any) => {
     if (error) console.log(error);
   };
 
+  //TODO MAKE SURE THIS WORKS HAD TO DO WHILE THE API WAS FINISHED
+  // ! dont think the ID coming from the click will be correct- must check
+  // ? changed the resolver to take in the image as it is more unique an can be taken from the actual movielist array rather than the favourites array and then matched up in ther esolver to remove
+  const removeFromFavourites = async (input: string) => {
+    console.log(input);
+    await removeFavourite({ variables: { image: input } });
+  };
+
   // * info needed from fetch response (contentRating: G, Pg etc; description- year made; genres- string of genres; imDbRating- rating; image- poster image; plot- movie plt; stars- string of stars names; title- title)
 
   return (
@@ -102,7 +111,12 @@ const ListPage = ({ criteria }: any) => {
                   (listOfFavourites.some(
                     (fav: any) => fav.image === movie.image
                   ) ? (
-                    <BsSuitHeartFill className="hover:cursor-pointer hover:text-lg" />
+                    <BsSuitHeartFill
+                      className="hover:cursor-pointer hover:text-lg"
+                      onClick={() =>
+                        removeFromFavourites(listOfFavourites.image)
+                      }
+                    />
                   ) : (
                     <BsSuitHeart
                       onClick={() => addToFavourite(movie)}

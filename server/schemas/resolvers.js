@@ -65,10 +65,10 @@ const resolvers = {
       );
       return updateUser;
     },
-    removeFavourite: async (parent, { favouriteId }, context) => {
+    removeFavourite: async (parent, { image }, context) => {
       if (context.user) {
         const favourite = await Favourite.findOneAndDelete({
-          _id: favouriteId,
+          image: image,
         });
 
         await User.findOneAndUpdate(
