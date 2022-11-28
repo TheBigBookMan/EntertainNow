@@ -10,9 +10,10 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    favourites: async (parent, args, { user: userId }) => {
-      const user = await User.findById(userId).populate("favourites");
-      return user.favourites;
+    favourites: async (parent, args, { user }) => {
+      const loggedUser = await User.findById(user).populate("favourites");
+      console.log(loggedUser);
+      return loggedUser.favourites;
     },
   },
 

@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_FAVOURITES = gql`
-  query GetFavourites($userId: ID!) {
-    favourites(userId: $userId) {
+  query GetFavourites {
+    favourites {
       _id
       title
       description

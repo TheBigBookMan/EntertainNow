@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { AiFillStar } from "react-icons/ai";
 import Container from "../components/common/Container";
-import { ADD_FAVOURITE, REMOVE_FAVOURITE } from "../graphql/queries";
-import { useMutation } from "@apollo/client";
+import {
+  ADD_FAVOURITE,
+  REMOVE_FAVOURITE,
+  GET_FAVOURITES,
+} from "../graphql/queries";
+import { useMutation, useQuery } from "@apollo/client";
 import getYoutube from "../hooks/YoutubeAPI";
 import useCtx from "../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
@@ -12,10 +16,25 @@ import { ThreeDots } from "react-loader-spinner";
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
   const [movieList, setMovieList] = useState<MovieProps[]>([]);
-  const [addFavourite, { error }] = useMutation(ADD_FAVOURITE);
+  const [addFavourite, { error, data: NewFavourite }] = useMutation(
+    ADD_FAVOURITE,
+    {
+      refetchQueries: [{ query: GET_FAVOURITES }],
+    }
+  );
+  const { data: UsersFavourites } = useQuery(GET_FAVOURITES);
   const { isLoggedIn } = useCtx();
 
+  useEffect(() => {
+    const listOfFavourites = UsersFavourites?.favourites;
+    if (listOfFavourites) {
+      // console.log(listOfFavourites);
+    }
+  }, [UsersFavourites]);
+
   // TODO have the add favourite and remove favourite mutation
+
+  //TODO might need a "me" resolver query to get the infpmation about waht movies they hav efavourited to then be able to have the love hearts filled or not
 
   const makeAPICall = async (): Promise<void> => {
     const response = await getData(criteria);
@@ -45,13 +64,11 @@ const ListPage = ({ criteria }: any) => {
       youtube: url,
     };
     const { data } = await addFavourite({ variables });
-    console.log(data);
+    // console.log(data);
     if (error) console.log(error);
   };
 
   // * info needed from fetch response (contentRating: G, Pg etc; description- year made; genres- string of genres; imDbRating- rating; image- poster image; plot- movie plt; stars- string of stars names; title- title)
-
-  // TODO add in loading spinner
 
   return (
     <Container>
