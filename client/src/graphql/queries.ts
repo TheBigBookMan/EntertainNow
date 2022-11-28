@@ -106,8 +106,8 @@ export const ADD_FAVOURITE = gql`
 `;
 
 export const REMOVE_FAVOURITE = gql`
-  mutation RemoveFavourite($favouriteId: ID!) {
-    removeFavourite(favouriteId: $favouriteId) {
+  mutation RemoveFavourite($image: String!) {
+    removeFavourite(image: $image) {
       _id
       title
       description

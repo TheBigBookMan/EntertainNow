@@ -25,7 +25,6 @@ const ListPage = ({ criteria }: any) => {
   const [removeFavourite] = useMutation(REMOVE_FAVOURITE);
   const { data: UsersFavourites } = useQuery(GET_FAVOURITES);
   const { isLoggedIn } = useCtx();
-  const listOfFavourites = UsersFavourites?.favourites;
 
   // useEffect(() => {
 
@@ -34,17 +33,10 @@ const ListPage = ({ criteria }: any) => {
   //   }
   // }, [UsersFavourites]);
 
-  console.log(listOfFavourites);
-  // TODO have the add favourite and remove favourite mutation
-
-  //TODO might need a "me" resolver query to get the infpmation about waht movies they hav efavourited to then be able to have the love hearts filled or not
-
   const makeAPICall = async (): Promise<void> => {
     const response = await getData(criteria);
     setMovieList(response);
   };
-
-  //! need to make variables reset to empty
 
   useEffect(() => {
     makeAPICall();
@@ -57,7 +49,6 @@ const ListPage = ({ criteria }: any) => {
 
   const addToFavourite = async (input: MovieProps) => {
     const url = await fetchYoutube(input.title, input.description);
-    // TODO get matching data for the favourite props from the input
     const variables = {
       title: input.title,
       description: input.description,
@@ -74,12 +65,10 @@ const ListPage = ({ criteria }: any) => {
   //TODO MAKE SURE THIS WORKS HAD TO DO WHILE THE API WAS FINISHED
   // ! dont think the ID coming from the click will be correct- must check
   // ? changed the resolver to take in the image as it is more unique an can be taken from the actual movielist array rather than the favourites array and then matched up in ther esolver to remove
+  //! changed the favourite list from variable to the properties of the imported list
   const removeFromFavourites = async (input: string) => {
-    console.log(input);
     await removeFavourite({ variables: { image: input } });
   };
-
-  // * info needed from fetch response (contentRating: G, Pg etc; description- year made; genres- string of genres; imDbRating- rating; image- poster image; plot- movie plt; stars- string of stars names; title- title)
 
   return (
     <Container>
@@ -108,13 +97,13 @@ const ListPage = ({ criteria }: any) => {
                 <h1 className="font-bold text-xl">{movie.title}</h1>
                 <p className="italic">{movie.description}</p>
                 {isLoggedIn &&
-                  (listOfFavourites.some(
+                  (UsersFavourites?.favourites.some(
                     (fav: any) => fav.image === movie.image
                   ) ? (
                     <BsSuitHeartFill
                       className="hover:cursor-pointer hover:text-lg"
                       onClick={() =>
-                        removeFromFavourites(listOfFavourites.image)
+                        removeFromFavourites(UsersFavourites?.favourites.image)
                       }
                     />
                   ) : (

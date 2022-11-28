@@ -42,7 +42,7 @@ const typeDefs = gql`
       image: String!
       youtube: String!
     ): Favourite
-    removeFavourite(favouriteId: ID!): Favourite
+    removeFavourite(image: String!): Favourite
   }
 `;
 
