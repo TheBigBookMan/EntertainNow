@@ -7,6 +7,7 @@ import { ADD_FAVOURITE, REMOVE_FAVOURITE } from "../graphql/queries";
 import { useMutation } from "@apollo/client";
 import getYoutube from "../hooks/YoutubeAPI";
 import useCtx from "../contexts/UserContext";
+import { ThreeDots } from "react-loader-spinner";
 
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
@@ -51,12 +52,22 @@ const ListPage = ({ criteria }: any) => {
   // * info needed from fetch response (contentRating: G, Pg etc; description- year made; genres- string of genres; imDbRating- rating; image- poster image; plot- movie plt; stars- string of stars names; title- title)
 
   // TODO add in loading spinner
-  if (movieList.length === 0) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <Container>
+      {movieList.length === 0 && (
+        <ThreeDots
+          height="100"
+          width="100"
+          radius="9"
+          color="#9a9c9a"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{
+            margin: "auto",
+          }}
+          visible={true}
+        />
+      )}
       <ul className="flex flex-col h-full overflow-y-scroll">
         {movieList.map((movie, index) => {
           return (
