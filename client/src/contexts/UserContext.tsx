@@ -40,6 +40,7 @@ export const Provider = ({ children }: Prototypes) => {
   // ? When user state changes, it is stored onto localstorage as the user
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
+    console.log(user);
   }, [user]);
 
   //? Once the signup data changes it is added to user state

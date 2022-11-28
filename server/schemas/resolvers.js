@@ -20,7 +20,7 @@ const resolvers = {
     addUser: async (parent, { username, password, email }, { res }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
-      setCookie(res, token);
+      // setCookie(res, token);
       return { user, token };
     },
     login: async (parent, { username, password }, { res }) => {
@@ -30,23 +30,22 @@ const resolvers = {
       if (!(await user.isCorrectPassword(password)))
         throw new AuthenticationError("Incorrect credentials.");
       const token = signToken(user);
-      setCookie(res, token);
+      // setCookie(res, token);
       return { user, token };
     },
     logout: async (parent, args, { res, user }) => {
       if (!user) {
         return false;
       }
-
-      res.clearCookie("token");
+      // res.clearCookie("token");
       return true;
     },
     addFavourite: async (
       parent,
       { title, description, imDbRating, contentRating, image, youtube },
-      { user }
+      context
     ) => {
-      console.log(user);
+      const { user } = context;
       if (!user)
         throw new AuthenticationError(
           "You need to be logged in to add to favourites"

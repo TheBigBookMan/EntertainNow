@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
-const { gqlAuthMiddleware } = require("./utils/auth");
+const { authMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 
@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(require("cookie-parser")());
+// app.use(require("cookie-parser")());
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
@@ -43,4 +43,5 @@ const startApolloServer = async (typeDefs, resolvers, context) => {
   });
 };
 
-startApolloServer(typeDefs, resolvers, gqlAuthMiddleware);
+startApolloServer(typeDefs, resolvers, authMiddleware);
+// startApolloServer(typeDefs, resolvers);
