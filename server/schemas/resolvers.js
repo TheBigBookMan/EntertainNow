@@ -12,7 +12,6 @@ const resolvers = {
     },
     favourites: async (parent, args, { user }) => {
       const loggedUser = await User.findById(user).populate("favourites");
-      console.log(loggedUser);
       return loggedUser.favourites;
     },
   },

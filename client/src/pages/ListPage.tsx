@@ -24,14 +24,16 @@ const ListPage = ({ criteria }: any) => {
   );
   const { data: UsersFavourites } = useQuery(GET_FAVOURITES);
   const { isLoggedIn } = useCtx();
+  const listOfFavourites = UsersFavourites?.favourites;
 
-  useEffect(() => {
-    const listOfFavourites = UsersFavourites?.favourites;
-    if (listOfFavourites) {
-      // console.log(listOfFavourites);
-    }
-  }, [UsersFavourites]);
+  // useEffect(() => {
 
+  //   if (listOfFavourites) {
+  //     // console.log(listOfFavourites);
+  //   }
+  // }, [UsersFavourites]);
+
+  console.log(listOfFavourites);
   // TODO have the add favourite and remove favourite mutation
 
   //TODO might need a "me" resolver query to get the infpmation about waht movies they hav efavourited to then be able to have the love hearts filled or not
@@ -96,12 +98,17 @@ const ListPage = ({ criteria }: any) => {
               <div className="flex items-center gap-2">
                 <h1 className="font-bold text-xl">{movie.title}</h1>
                 <p className="italic">{movie.description}</p>
-                {isLoggedIn && (
-                  <BsSuitHeart
-                    onClick={() => addToFavourite(movie)}
-                    className="hover:cursor-pointer hover:text-lg"
-                  />
-                )}
+                {isLoggedIn &&
+                  (listOfFavourites.some(
+                    (fav: any) => fav.image === movie.image
+                  ) ? (
+                    <BsSuitHeartFill className="hover:cursor-pointer hover:text-lg" />
+                  ) : (
+                    <BsSuitHeart
+                      onClick={() => addToFavourite(movie)}
+                      className="hover:cursor-pointer hover:text-lg"
+                    />
+                  ))}
               </div>
               <div className="flex gap-5">
                 <p className="flex items-center">
