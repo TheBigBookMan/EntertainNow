@@ -33,6 +33,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
       </h1>
       <form className="flex flex-col justify-around h-full text-lg pb-5">
         <select
+          defaultValue={"Genre"}
           className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"
           onChange={(e) =>
             setCriteria({
@@ -43,7 +44,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
             })
           }
         >
-          <option value="" disabled selected hidden>
+          <option value="Genre" disabled>
             Genre
           </option>
           {genreData.map((genre) => (
@@ -54,6 +55,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
         </select>
 
         <select
+          defaultValue={"Type entertainment"}
           className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"
           onChange={(e) =>
             setCriteria({
@@ -64,7 +66,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
             })
           }
         >
-          <option value="" disabled selected hidden>
+          <option value="Type entertainment" disabled>
             Type Entertainment
           </option>
           {entertainmentData.map((type) => (
@@ -75,6 +77,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
         </select>
 
         <select
+          defaultValue={"Rating"}
           className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"
           onChange={(e) =>
             setCriteria({
@@ -85,7 +88,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
             })
           }
         >
-          <option value="" disabled selected hidden>
+          <option value="Rating" disabled>
             Rating
           </option>
           {ratingData.map((rating) => (
