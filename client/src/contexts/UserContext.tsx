@@ -31,6 +31,11 @@ interface Prototypes {
 const localUser = JSON.parse(localStorage.getItem("user") as string) || null;
 const [useCtx, UserProvider] = createCtx<CtxUser>();
 
+//!!!! NEED TO ADD IN JWT DECODE
+//!!!!!
+//!!!!
+//!!!!
+
 export const Provider = ({ children }: Prototypes) => {
   const [user, setUser] = useState<UserInfo | null>(localUser);
   const [signUpMutation, { data: signUpData, loading }] = useMutation(ADD_USER);

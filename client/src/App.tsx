@@ -92,7 +92,7 @@ function App() {
                 index
                 element={<Home criteria={criteria} setCriteria={setCriteria} />}
               />
-              <Route path="list" element={<ListPage criteria={criteria} />} />
+              <Route path="list/*" element={<ListPage criteria={criteria} />} />
               <Route path="favourites" element={<Favourites />} />
               <Route path="signin" element={<SignIn />} />
               <Route path="signup" element={<SignUp />} />

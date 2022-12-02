@@ -33,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/TheBigBookMan/EntertainNow/issues"
   },
-  "homepage": "https://github.com/TheBigBookMan/EntertainNow#readme"
+  "homepage": "https://github.com/TheBigBookMan/EntertainNow#readme",
+  "dependencies": {
+    "react-youtube": "^10.1.0"
+  }
 }
