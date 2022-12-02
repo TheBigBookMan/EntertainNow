@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 const Form = ({ criteria, setCriteria }: CriteriaState) => {
   const [keyword, setKeyword] = useState<string>("");
 
+  //TODO fix up the setcriteria to reset after submission
+
   //! fix up the e: type !!!!AVOID ANY!!!
   /**
    *

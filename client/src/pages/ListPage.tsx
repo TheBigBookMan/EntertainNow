@@ -16,7 +16,7 @@ import Display from "../components/feature/Display";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
 
 //! FIX THE ANYS
-const ListPage = ({ criteria }: any) => {
+const ListPage = ({ criteria, setCriteria }: any) => {
   const nav = useNavigate();
   const [displayActive, setDisplayActive] = useState<boolean>(false);
   const [movieList, setMovieList] = useState<MovieProps[]>([]);
@@ -33,6 +33,12 @@ const ListPage = ({ criteria }: any) => {
   const makeAPICall = async (): Promise<void> => {
     const response = await getData(criteria);
     setMovieList(response);
+    setCriteria({
+      genre: "",
+      typeEntertainment: "",
+      rating: "",
+      title: "",
+    });
   };
 
   useEffect(() => {
