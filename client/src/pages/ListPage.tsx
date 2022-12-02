@@ -13,10 +13,11 @@ import getYoutube from "../hooks/YoutubeAPI";
 import useCtx from "../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 import Display from "../components/feature/Display";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 
 //! FIX THE ANYS
 const ListPage = ({ criteria }: any) => {
+  const nav = useNavigate();
   const [displayActive, setDisplayActive] = useState<boolean>(false);
   const [movieList, setMovieList] = useState<MovieProps[]>([]);
   const [addFavourite, { error, data: NewFavourite }] = useMutation(
@@ -28,8 +29,6 @@ const ListPage = ({ criteria }: any) => {
   const [removeFavourite] = useMutation(REMOVE_FAVOURITE);
   const { data: UsersFavourites } = useQuery(GET_FAVOURITES);
   const { isLoggedIn } = useCtx();
-
-  console.log(displayActive);
 
   const makeAPICall = async (): Promise<void> => {
     const response = await getData(criteria);
@@ -60,8 +59,13 @@ const ListPage = ({ criteria }: any) => {
     if (error) console.log(error);
   };
 
-  //TODO MAKE SURE THIS WORKS HAD TO DO WHILE THE API WAS FINISHED
-  // ! dont think the ID coming from the click will be correct- must check
+  const getYoutubeId = async (input: MovieProps) => {
+    setDisplayActive(true);
+    const youtubeUrl = await getYoutube(input.title, input.description);
+    //TODO get the ID out and then send to the nav spot
+    nav(`/list/display/${youtubeUrl}`);
+  };
+
   // ? changed the resolver to take in the image as it is more unique an can be taken from the actual movielist array rather than the favourites array and then matched up in ther esolver to remove
   //! changed the favourite list from variable to the properties of the imported list
   const removeFromFavourites = async (input: string) => {
@@ -73,7 +77,7 @@ const ListPage = ({ criteria }: any) => {
       {displayActive && (
         <Routes>
           <Route
-            path="/display/*"
+            path="/display/:youtubeId"
             element={
               <Display
                 displayActive={displayActive}
@@ -107,16 +111,13 @@ const ListPage = ({ criteria }: any) => {
                 className="flex flex-col items-center border-b-2 mb-2 p-1 h-[550px] "
               >
                 <div className="group relative hover:cursor-pointer">
-                  <Link
-                    to="/list/display/2g811Eo7K8U"
-                    onClick={() => setDisplayActive(true)}
-                  >
+                  <div onClick={() => getYoutubeId(movie)}>
                     <img
                       src={movie.image}
                       className="w-52 rounded-3xl relative group-hover:brightness-50 transition-all "
                     />
                     <AiFillPlayCircle className="text-zinc-100 flex p-2 gap-5 absolute top-0 left-0 h-0 w-full  justify-center items-center opacity-0 group-hover:h-full group-hover:opacity-100 duration-500" />
-                  </Link>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <h1 className="font-bold text-xl">{movie.title}</h1>

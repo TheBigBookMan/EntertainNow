@@ -12,8 +12,8 @@ const getYoutube = async (title: string, year: string) => {
     );
 
     const { videoId } = data.items[0].id;
-    const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
-    return youtubeUrl;
+    // const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
+    return videoId;
   } catch (error) {
     console.log(error);
   }
