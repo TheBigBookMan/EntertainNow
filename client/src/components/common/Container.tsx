@@ -1,6 +1,6 @@
 interface Proptypes {
   children: React.ReactNode;
-  displayActive: boolean;
+  displayActive: boolean | null;
 }
 
 const Container = ({ children, displayActive }: Proptypes) => {

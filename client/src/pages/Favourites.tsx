@@ -1,12 +1,16 @@
 import Container from "../components/common/Container";
+import Display from "../components/feature/Display";
 import { BsSuitHeartFill } from "react-icons/bs";
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiFillPlayCircle } from "react-icons/ai";
 import { REMOVE_FAVOURITE, GET_FAVOURITES } from "../graphql/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import getYoutube from "../hooks/YoutubeAPI";
 
 const Favourites = () => {
-  // TODO add star react icon for rating
+  const nav = useNavigate();
+  const [displayActive, setDisplayActive] = useState<boolean>(false);
   const [arrayOfFavs, setArrayOfFavs] = useState<FavouriteProps[]>([]);
   const { data: listOfFavourites, loading } = useQuery(GET_FAVOURITES);
   const [removeFavourite] = useMutation(REMOVE_FAVOURITE, {
@@ -21,12 +25,13 @@ const Favourites = () => {
     }
   }, [listOfFavourites]);
 
-  // TODO get favourites from graphql using query
-
-  //!!! the favlist isnt being assigned before the map is getting created so need to figure out
-
   const removeFromFavourites = async (input: string) => {
     await removeFavourite({ variables: { image: input } });
+  };
+
+  const getYoutubeId = async (input: FavouriteProps) => {
+    setDisplayActive(true);
+    nav(`/favourites/display/${input.youtube}`);
   };
 
   if (arrayOfFavs.length === 0) {
@@ -34,42 +39,65 @@ const Favourites = () => {
   }
 
   return (
-    <Container>
-      <h1 className="font-bold text-2xl text-center">Favourites</h1>
-      {arrayOfFavs.length === 0 ? (
-        <div>You don't have any favourites, yet...</div>
-      ) : (
-        <div>
-          <p className="text-sm italic">
-            Click the heart to remove from favourites
-          </p>
-          <ul className="flex flex-col gap-2">
-            {arrayOfFavs.map((movie: FavouriteProps) => (
-              <li
-                className="flex justify-between border-b-2"
-                key={movie.youtube}
-              >
-                <div className="flex flex-col">
-                  <div className="flex flex-row gap-2 items-center pr-2">
-                    <h1 className="font-bold text-zinc-400">{movie.title}</h1>
-                    <p>{movie.description}</p>
-                    <BsSuitHeartFill
-                      className="text-md hover:cursor-pointer hover:text-lg"
-                      onClick={() => removeFromFavourites(movie.image)}
-                    />
-                  </div>
-                  <p className="text-sm flex items-center">
-                    {movie.imDbRating} <AiFillStar className="text-lg" />
-                  </p>
-                  <p className="text-sm">{movie.contentRating} rated</p>
-                </div>
-                <img src={movie.image} className="w-20 rounded-2xl" />
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="relative">
+      {displayActive && (
+        <Routes>
+          <Route
+            path="/display/:youtubeId"
+            element={
+              <Display
+                displayActive={displayActive}
+                setDisplayActive={setDisplayActive}
+              />
+            }
+          />
+        </Routes>
       )}
-    </Container>
+      <Container displayActive={displayActive}>
+        <h1 className="font-bold text-2xl text-center">Favourites</h1>
+        {arrayOfFavs.length === 0 ? (
+          <div>You don't have any favourites, yet...</div>
+        ) : (
+          <div>
+            <p className="text-sm italic">
+              Click the heart to remove from favourites, or click the image to
+              view the trailer.
+            </p>
+            <ul className="flex flex-col gap-2">
+              {arrayOfFavs.map((movie: FavouriteProps) => (
+                <li
+                  onClick={() => getYoutubeId(movie)}
+                  className="flex justify-between border-b-2"
+                  key={movie.youtube}
+                >
+                  <div className="flex flex-col">
+                    <div className="flex flex-row gap-2 items-center pr-2">
+                      <h1 className="font-bold text-zinc-400">{movie.title}</h1>
+                      <p>{movie.description}</p>
+                      <BsSuitHeartFill
+                        className="text-md hover:cursor-pointer hover:text-lg"
+                        onClick={() => removeFromFavourites(movie.image)}
+                      />
+                    </div>
+                    <p className="text-sm flex items-center">
+                      {movie.imDbRating} <AiFillStar className="text-lg" />
+                    </p>
+                    <p className="text-sm">{movie.contentRating} rated</p>
+                  </div>
+                  <div className="group relative hover:cursor-pointer">
+                    <img
+                      src={movie.image}
+                      className="w-24 rounded-2xl relative group-hover:brightness-50 transition-all"
+                    />
+                    <AiFillPlayCircle className="text-zinc-100 flex p-2 gap-5 absolute top-0 left-0 h-0 w-full  justify-center items-center opacity-0 group-hover:h-full group-hover:opacity-100 duration-500" />
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </Container>
+    </div>
   );
 };
 

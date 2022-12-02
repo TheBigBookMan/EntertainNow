@@ -4,7 +4,7 @@ import Container from "../components/common/Container";
 //! GET RID OF ANY
 const Home = ({ criteria, setCriteria }: CriteriaState) => {
   return (
-    <Container>
+    <Container displayActive={null}>
       <p className="text-md mb-2">
         Type in entertainment criteria that you are looking for or search a
         title! A list of entertainment matching the input will present. If you

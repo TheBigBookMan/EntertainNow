@@ -1,6 +1,6 @@
 import YouTube, { YouTubeProps } from "react-youtube";
 import { GiCancel } from "react-icons/gi";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 //TODO add in prop of the youtube id which is passed in from the ListPage parent component
 
@@ -10,6 +10,7 @@ interface displayProps {
 }
 
 const Display = ({ displayActive, setDisplayActive }: displayProps) => {
+  const nav = useNavigate();
   let { youtubeId } = useParams();
   console.log(youtubeId);
   const opts: YouTubeProps["opts"] = {
@@ -35,12 +36,13 @@ const Display = ({ displayActive, setDisplayActive }: displayProps) => {
           opts={opts}
           onReady={onPlayerReady}
         />
-        <Link to="/list">
-          <GiCancel
-            onClick={() => setDisplayActive(false)}
-            className="absolute left-2 top-1 text-lg hover:cursor-pointer hover:bg-red-600 hover:text-zinc-100 rounded-lg transition-all"
-          />
-        </Link>
+        <GiCancel
+          onClick={() => {
+            setDisplayActive(false);
+            nav(-1);
+          }}
+          className="absolute left-2 top-1 text-lg hover:cursor-pointer hover:bg-red-600 hover:text-zinc-100 rounded-lg transition-all"
+        />
       </div>
     </div>
   );
