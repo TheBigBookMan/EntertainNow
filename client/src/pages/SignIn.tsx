@@ -8,6 +8,7 @@ interface LoginType {
   password: string;
 }
 
+//* Component to login the user to use the app
 const SignIn = () => {
   const nav = useNavigate();
   const [loginDetails, setLoginDetails] = useState<LoginType>({
@@ -16,6 +17,7 @@ const SignIn = () => {
   });
   const { loginUser } = UseUserContext();
 
+  //* Submits the user signin details and redirects the user to home page
   const handleSubmit = (e: any) => {
     e.preventDefault();
     loginUser(loginDetails);

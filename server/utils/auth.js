@@ -7,6 +7,7 @@ const expiration = "24h";
 // const TOKEN_AGE = 1000 * 60 * 60 * 24;
 
 module.exports = {
+  //* Middleware to check for JWT and then verify it
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -28,6 +29,7 @@ module.exports = {
 
     return req;
   },
+  //* JWT function to sign the token for users login or signup
   signToken: function ({ _id }) {
     const payload = { _id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });

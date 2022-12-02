@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+// * Middleware for express server
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // app.use(require("cookie-parser")());
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
+// * Start the Apollo server connection with middleware
 const startApolloServer = async (typeDefs, resolvers, context) => {
   const server = new ApolloServer({
     typeDefs,
@@ -44,4 +46,3 @@ const startApolloServer = async (typeDefs, resolvers, context) => {
 };
 
 startApolloServer(typeDefs, resolvers, authMiddleware);
-// startApolloServer(typeDefs, resolvers);

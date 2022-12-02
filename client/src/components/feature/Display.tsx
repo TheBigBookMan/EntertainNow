@@ -1,18 +1,16 @@
 import YouTube, { YouTubeProps } from "react-youtube";
 import { GiCancel } from "react-icons/gi";
-import { Link, useParams, useNavigate } from "react-router-dom";
-
-//TODO add in prop of the youtube id which is passed in from the ListPage parent component
+import { useParams, useNavigate } from "react-router-dom";
 
 interface displayProps {
   displayActive: boolean;
   setDisplayActive: (arg0: boolean) => void;
 }
 
-const Display = ({ displayActive, setDisplayActive }: displayProps) => {
+//* Component that displays the youtube video widget
+const Display = ({ setDisplayActive }: displayProps) => {
   const nav = useNavigate();
   let { youtubeId } = useParams();
-  console.log(youtubeId);
   const opts: YouTubeProps["opts"] = {
     height: "250",
     width: "320",

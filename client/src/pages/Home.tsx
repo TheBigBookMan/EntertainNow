@@ -1,7 +1,7 @@
 import Form from "../components/feature/Form";
 import Container from "../components/common/Container";
 
-//! GET RID OF ANY
+//* Component for the home page with instructions
 const Home = ({ criteria, setCriteria }: CriteriaState) => {
   return (
     <Container displayActive={null}>

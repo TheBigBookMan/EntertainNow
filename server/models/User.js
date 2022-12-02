@@ -1,12 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-// TODO can make the Entertainment model a subdoc of the Users model for favourites
-
-// ! properties- username, email, password, saved movies (sub doc of entertainment model)
-
-//TODO need password hashing for the password
-
+// * Mongoose schema for the user model
 const userSchema = new Schema(
   {
     username: {
@@ -48,15 +43,16 @@ userSchema.virtual("favouriteCount").get(function () {
   return this.favourites.length;
 });
 
+// * Function to hash the password
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
 });
 
+//* Function to check if the users login password is correct or not
 userSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };

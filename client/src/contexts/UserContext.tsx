@@ -28,13 +28,9 @@ interface Prototypes {
   children: React.ReactNode;
 }
 
+//* Get the localuser info from local storage
 const localUser = JSON.parse(localStorage.getItem("user") as string) || null;
 const [useCtx, UserProvider] = createCtx<CtxUser>();
-
-//!!!! NEED TO ADD IN JWT DECODE
-//!!!!!
-//!!!!
-//!!!!
 
 export const Provider = ({ children }: Prototypes) => {
   const [user, setUser] = useState<UserInfo | null>(localUser);
@@ -87,6 +83,7 @@ export const Provider = ({ children }: Prototypes) => {
     setUser(user);
   };
 
+  //* Checks if user is logged in determined by state
   const isLoggedIn = !!user;
 
   return (

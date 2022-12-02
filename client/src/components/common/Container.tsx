@@ -3,6 +3,7 @@ interface Proptypes {
   displayActive: boolean | null;
 }
 
+//* Container component used globally for all other components
 const Container = ({ children, displayActive }: Proptypes) => {
   return (
     <div

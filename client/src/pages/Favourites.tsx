@@ -5,30 +5,32 @@ import { AiFillStar, AiFillPlayCircle } from "react-icons/ai";
 import { REMOVE_FAVOURITE, GET_FAVOURITES } from "../graphql/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
-import getYoutube from "../hooks/YoutubeAPI";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
+//* Component that shows the user a list of their favourites
 const Favourites = () => {
   const nav = useNavigate();
   const [displayActive, setDisplayActive] = useState<boolean>(false);
   const [arrayOfFavs, setArrayOfFavs] = useState<FavouriteProps[]>([]);
-  const { data: listOfFavourites, loading } = useQuery(GET_FAVOURITES);
+  const { data: listOfFavourites } = useQuery(GET_FAVOURITES);
+  //* User removes from favourite then refetch of the favourite data
   const [removeFavourite] = useMutation(REMOVE_FAVOURITE, {
     refetchQueries: [{ query: GET_FAVOURITES }],
   });
 
   useEffect(() => {
     let favList = listOfFavourites?.favourites;
-
     if (favList) {
       setArrayOfFavs(favList);
     }
   }, [listOfFavourites]);
 
+  //* Remove favourite
   const removeFromFavourites = async (input: string) => {
     await removeFavourite({ variables: { image: input } });
   };
 
+  //* Get the youtube ID from database and then navigate to that youtube video
   const getYoutubeId = async (input: FavouriteProps) => {
     setDisplayActive(true);
     nav(`/favourites/display/${input.youtube}`);
@@ -66,7 +68,6 @@ const Favourites = () => {
             <ul className="flex flex-col gap-2">
               {arrayOfFavs.map((movie: FavouriteProps) => (
                 <li
-                  onClick={() => getYoutubeId(movie)}
                   className="flex justify-between border-b-2"
                   key={movie.youtube}
                 >
@@ -89,7 +90,10 @@ const Favourites = () => {
                       src={movie.image}
                       className="w-24 rounded-2xl relative group-hover:brightness-50 transition-all"
                     />
-                    <AiFillPlayCircle className="text-zinc-100 flex p-2 gap-5 absolute top-0 left-0 h-0 w-full  justify-center items-center opacity-0 group-hover:h-full group-hover:opacity-100 duration-500" />
+                    <AiFillPlayCircle
+                      onClick={() => getYoutubeId(movie)}
+                      className="text-zinc-100 flex p-2 gap-5 absolute top-0 left-0 h-0 w-full  justify-center items-center opacity-0 group-hover:h-full group-hover:opacity-100 duration-500"
+                    />
                   </div>
                 </li>
               ))}

@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 
+//* Create context and Types for context
 const createCtx = <T extends {}>() => {
   const ctx = createContext<T | null>({} as T);
   const useCtx = () => {

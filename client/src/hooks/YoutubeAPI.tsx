@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//* GET to the youtube API and returns a youtube URL to that specific trailer
+//* GET to the youtube API and returns a youtube ID to that specific trailer
 const getYoutube = async (title: string, year: string) => {
   try {
     if (title.split(" ").length > 1) {

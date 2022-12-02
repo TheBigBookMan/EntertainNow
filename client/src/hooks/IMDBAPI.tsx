@@ -1,13 +1,6 @@
 import axios from "axios";
 
-// ? imdb-api https://imdb-api.com/API/AdvancedSearch/k_q5dx85dn?title=Inception&user_rating=6,10&release_date=2010-01-01,2022-01-01&genres=Any
-/**
- *
- * @param criteria object with the selected criteria from Form
- * @returns response data- object
- */
-
-// TODO need to specify the return type-- global type i think or config like brad did in coincharter
+//* Function to take in entertainment criteria and return the api data
 const getData = async (criteria: Criteria) => {
   try {
     if (criteria.genre === "") {

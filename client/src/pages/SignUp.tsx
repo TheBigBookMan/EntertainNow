@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UseUserContext from "../contexts/UserContext";
 
+//* Component to sign the user up and save their details in the database
 const SignUp = () => {
   let isValid = true;
   const nav = useNavigate();
@@ -11,8 +12,7 @@ const SignUp = () => {
     password: "",
     email: "",
   });
-  const { signUpUser, user, loading } = UseUserContext();
-  let notValid;
+  const { signUpUser, loading } = UseUserContext();
 
   const inputChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setFormInfo((prevState) => ({
@@ -21,8 +21,9 @@ const SignUp = () => {
     }));
   };
 
-  //TODO add in validators for the length of username, password etc to display on screen to user
+  //!!!!! need to add in validators for incorrect length of username and password etc on frontendui
 
+  //* Function to take in the signup details and adds to database and redirects user to home page
   const onSubmit = async (e: { preventDefault: () => void }) => {
     try {
       e.preventDefault();
@@ -41,6 +42,7 @@ const SignUp = () => {
       console.log(error);
     }
   };
+
   return (
     <Container>
       <h1 className="text-center font-bold text-2xl">Sign Up</h1>

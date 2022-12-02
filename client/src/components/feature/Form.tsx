@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   genreData,
   entertainmentData,
@@ -6,20 +6,11 @@ import {
 } from "../../utils/formOptions";
 import { Link } from "react-router-dom";
 
-//! FIX THE ANY!!!
+//* Component for the form for user input
 const Form = ({ criteria, setCriteria }: CriteriaState) => {
   const [keyword, setKeyword] = useState<string>("");
 
-  //TODO fix up the setcriteria to reset after submission
-
-  //! fix up the e: type !!!!AVOID ANY!!!
-  /**
-   *
-   * @param e takes in the event listener button
-   * @returns nothing
-   */
-  const onSubmit = (e: any): void => {
-    // e.preventDefault();
+  const onSubmit = () => {
     setCriteria({
       genre: criteria.genre,
       typeEntertainment: criteria.typeEntertainment,
@@ -107,7 +98,7 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
           className="border-solid border-2 rounded-lg pl-2"
         />
         <Link
-          onClick={(e) => onSubmit(e)}
+          onClick={() => onSubmit()}
           to={"/list"}
           type="submit"
           className=" rounded-lg bg-zinc-200 hover:bg-zinc-300 h-[40px] transition-all items-center justify-center flex"

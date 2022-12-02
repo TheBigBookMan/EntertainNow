@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// ! Poperties- title, description, imdbRating, contentrating, image
-
+//* Mongoose schema for favourites
 const favouriteSchema = new Schema({
   title: {
     type: String,
