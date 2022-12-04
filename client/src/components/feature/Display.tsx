@@ -11,12 +11,12 @@ interface displayProps {
 const Display = ({ setDisplayActive }: displayProps) => {
   let windowWidth;
   let windowHeight;
-  console.log(window.innerWidth);
+
   if (window.innerWidth < 600) {
     windowWidth = 400;
     windowHeight = 280;
   } else if (window.innerWidth < 1000) {
-    windowWidth = 600;
+    windowWidth = 580;
     windowHeight = 400;
   } else if (window.innerWidth >= 1000) {
     windowWidth = 900;
