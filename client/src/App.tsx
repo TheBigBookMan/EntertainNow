@@ -51,6 +51,11 @@ const client = new ApolloClient({
 //   cache: new InMemoryCache(),
 // });
 
+//!!!
+//!! CLEAN UP CLASSNAMES AND GROUP THEM DDEPENDENT ON WHAT THEY DOING- MEDIA QUERIES IN GROUPED AND FLEX PROPERTIES TOGETHER
+//!! LOOK AT CHANGE IN COLOR FOR MORE STYLE
+//!!!!
+
 function App() {
   const [criteria, setCriteria] = useState<Criteria>({
     genre: "",

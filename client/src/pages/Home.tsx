@@ -5,7 +5,7 @@ import Container from "../components/common/Container";
 const Home = ({ criteria, setCriteria }: CriteriaState) => {
   return (
     <Container displayActive={null}>
-      <p className="text-md mb-2">
+      <p className="text-md mb-2 max-w-xl text-center">
         Type in entertainment criteria that you are looking for or search a
         title! A list of entertainment matching the input will present. If you
         create an account you will be able to watch a trailer for them. You can

@@ -109,12 +109,14 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
           />
         )}
 
-        <ul className={`flex flex-col h-full overflow-y-scroll`}>
+        <ul
+          className={`flex flex-col h-full overflow-y-scroll md:flex-row md:flex-wrap md:justify-around md:w-full`}
+        >
           {movieList.map((movie, index) => {
             return (
               <li
                 key={movie.title + index}
-                className="flex flex-col items-center border-b-2 mb-2 p-1 h-[550px] "
+                className="flex flex-col items-center border-b-2 mb-2 p-1 h-[550px] w-full md:w-[350px]"
               >
                 <div
                   onClick={() => getYoutubeId(movie)}

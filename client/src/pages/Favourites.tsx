@@ -60,15 +60,15 @@ const Favourites = () => {
         {arrayOfFavs.length === 0 ? (
           <div>You don't have any favourites, yet...</div>
         ) : (
-          <div>
+          <div className="w-full">
             <p className="text-sm italic">
               Click the heart to remove from favourites, or click the image to
               view the trailer.
             </p>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2 w-full">
               {arrayOfFavs.map((movie: FavouriteProps) => (
                 <li
-                  className="flex justify-between border-b-2"
+                  className="flex justify-between border-b-2 w-full"
                   key={movie.youtube}
                 >
                   <div className="flex flex-col">
