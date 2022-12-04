@@ -61,22 +61,22 @@ const Favourites = () => {
           <div>You don't have any favourites, yet...</div>
         ) : (
           <div className="w-full">
-            <p className="text-sm italic">
+            <p className="text-sm italic text-center">
               Click the heart to remove from favourites, or click the image to
               view the trailer.
             </p>
-            <ul className="flex flex-col gap-2 w-full">
+            <ul className="flex flex-col items-center gap-2 w-full ">
               {arrayOfFavs.map((movie: FavouriteProps) => (
                 <li
-                  className="flex justify-between border-b-2 w-full"
+                  className="flex justify-between w-full max-w-[500px]"
                   key={movie.youtube}
                 >
                   <div className="flex flex-col">
                     <div className="flex flex-row gap-2 items-center pr-2">
-                      <h1 className="font-bold text-zinc-400">{movie.title}</h1>
-                      <p>{movie.description}</p>
+                      <h1 className="font-bold text-zinc-100">{movie.title}</h1>
+                      <p className="text-zinc-100">{movie.description}</p>
                       <BsSuitHeartFill
-                        className="text-md hover:cursor-pointer hover:text-lg"
+                        className="text-md hover:cursor-pointer hover:text-lg "
                         onClick={() => removeFromFavourites(movie.image)}
                       />
                     </div>
@@ -88,7 +88,7 @@ const Favourites = () => {
                   <div className="group relative hover:cursor-pointer">
                     <img
                       src={movie.image}
-                      className="w-24 rounded-2xl relative group-hover:brightness-50 transition-all"
+                      className="w-24 rounded-2xl relative group-hover:brightness-50 transition-all shadow-md shadow-black"
                     />
                     <AiFillPlayCircle
                       onClick={() => getYoutubeId(movie)}

@@ -100,7 +100,7 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
             height="100"
             width="100"
             radius="9"
-            color="#9a9c9a"
+            color="#fff"
             ariaLabel="three-dots-loading"
             wrapperStyle={{
               margin: "auto",
@@ -110,13 +110,13 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
         )}
 
         <ul
-          className={`flex flex-col h-full overflow-y-scroll md:flex-row md:flex-wrap md:justify-around md:w-full`}
+          className={`text-zinc-100 flex flex-col h-full overflow-y-auto md:flex-row md:flex-wrap md:justify-around md:w-full`}
         >
           {movieList.map((movie, index) => {
             return (
               <li
                 key={movie.title + index}
-                className="flex flex-col items-center border-b-2 mb-2 p-1 h-[550px] w-full md:w-[350px]"
+                className="flex flex-col items-center mb-2 p-1 h-[550px] w-full md:w-[350px]"
               >
                 <div
                   onClick={() => getYoutubeId(movie)}
@@ -158,7 +158,7 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
                 </div>
                 <p className="text-sm italic">{movie.genres}</p>
                 <p className="text-sm">{movie.stars}</p>
-                <p className="overflow-y-scroll">{movie.plot}</p>
+                <p className="overflow-y-auto">{movie.plot}</p>
               </li>
             );
           })}

@@ -5,7 +5,7 @@ import UseUserContext from "../../contexts/UserContext";
 const Footer = () => {
   const { isLoggedIn, logoutUser } = UseUserContext();
   return (
-    <div className="flex justify-between items-center p-2 pt-3">
+    <div className="flex justify-between items-center p-4 pt-3">
       {isLoggedIn ? (
         <>
           <Link to="/">

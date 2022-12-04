@@ -53,7 +53,7 @@ const client = new ApolloClient({
 
 //!!!
 //!! CLEAN UP CLASSNAMES AND GROUP THEM DDEPENDENT ON WHAT THEY DOING- MEDIA QUERIES IN GROUPED AND FLEX PROPERTIES TOGETHER
-//!! LOOK AT CHANGE IN COLOR FOR MORE STYLE
+//!! LOOK AT CHANGE IN COLOR FOR MORE STYLE--- the linear gradient of blue and purple like background for the calm app
 //!!!!
 
 function App() {
@@ -67,10 +67,10 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <UserProvider>
-        <div className="p-2">
+        <div className="p-2 bg-gradient-to-b from-sky-700 to-indigo-600">
           <Link to="/" className="flex gap-2 justify-center items-center">
             <GiFilmProjector className="text-3xl" />
-            <h1 className="text-center font-bold text-3xl text-zinc-400 mb-1 font-mono">
+            <h1 className="text-center tracking-widest font-bold text-4xl text-zinc-100 mb-2 font-lobster">
               EntertainNow
             </h1>
           </Link>
