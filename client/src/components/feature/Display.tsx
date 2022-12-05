@@ -9,21 +9,21 @@ interface displayProps {
 
 //* Component that displays the youtube video widget
 const Display = ({ setDisplayActive }: displayProps) => {
+  const nav = useNavigate();
   let windowWidth;
   let windowHeight;
 
   if (window.innerWidth < 600) {
-    windowWidth = 400;
+    windowWidth = 350;
     windowHeight = 280;
   } else if (window.innerWidth < 1000) {
-    windowWidth = 580;
+    windowWidth = 560;
     windowHeight = 400;
   } else if (window.innerWidth >= 1000) {
     windowWidth = 900;
     windowHeight = 500;
   }
 
-  const nav = useNavigate();
   let { youtubeId } = useParams();
   const opts: YouTubeProps["opts"] = {
     height: `${windowHeight}`,
