@@ -110,13 +110,13 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
         )}
 
         <ul
-          className={`text-zinc-100 flex flex-col h-full overflow-y-auto md:flex-row md:flex-wrap md:justify-around md:w-full`}
+          className={`text-zinc-100 flex flex-col h-full overflow-y-auto md:flex-row md:flex-wrap md:justify-around md:w-full scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-sky-600  scrollbar-thumb-rounded-md scrollbar-track-rounded-lg`}
         >
           {movieList.map((movie, index) => {
             return (
               <li
                 key={movie.title + index}
-                className="flex flex-col items-center mb-2 p-1 h-[550px] w-full md:w-[350px]"
+                className="flex flex-col items-center mb-2 p-2 h-[550px] w-full md:w-[350px]"
               >
                 <div
                   onClick={() => getYoutubeId(movie)}

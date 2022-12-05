@@ -45,7 +45,7 @@ const SignUp = () => {
 
   return (
     <Container>
-      <div className="w-full">
+      <div className="w-full max-w-xl">
         <h1 className="text-center font-bold text-2xl">Sign Up</h1>
         <p>
           Sign up to receive access to favourite movies and tv shows that you
