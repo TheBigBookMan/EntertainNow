@@ -44,7 +44,7 @@ const SignUp = () => {
   };
 
   return (
-    <Container>
+    <Container displayActive={null}>
       <div className="w-full max-w-xl">
         <h1 className="text-center font-bold text-2xl">Sign Up</h1>
         <p>

@@ -25,7 +25,7 @@ const SignIn = () => {
   };
 
   return (
-    <Container>
+    <Container displayActive={null}>
       <div className="w-full max-w-xl">
         <h1 className="text-center font-bold text-2xl">Sign In</h1>
         <form className="flex flex-col gap-5 mt-3">
