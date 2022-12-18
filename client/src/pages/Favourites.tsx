@@ -7,6 +7,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
+//TODO add in toastify for favourites  removed
+
 //* Component that shows the user a list of their favourites
 const Favourites = () => {
   const nav = useNavigate();

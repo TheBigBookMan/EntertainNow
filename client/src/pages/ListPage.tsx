@@ -15,6 +15,8 @@ import { ThreeDots } from "react-loader-spinner";
 import Display from "../components/feature/Display";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
+//TODO add in toastify for favourites added and removed
+
 //* Component that shows the list of entertainment based on their criteria selected
 const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
   const nav = useNavigate();
