@@ -67,7 +67,7 @@ const Favourites = () => {
               Click the heart to remove from favourites, or click the image to
               view the trailer.
             </p>
-            <ul className="h-[490px] flex flex-col items-center gap-2 w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-sky-600  scrollbar-thumb-rounded-md scrollbar-track-rounded-lg">
+            <ul className="h-[748px] flex flex-col items-center gap-2 w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-sky-600  scrollbar-thumb-rounded-md scrollbar-track-rounded-lg">
               {arrayOfFavs.map((movie: FavouriteProps) => (
                 <li
                   className="flex justify-between w-full max-w-[500px] p-2 pr-3 text-zinc-100"

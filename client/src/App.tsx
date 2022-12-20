@@ -75,7 +75,7 @@ function App() {
             </h1>
           </Link>
 
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col justify-between min-h-[848px]">
             <Routes>
               <Route
                 index

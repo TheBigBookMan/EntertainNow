@@ -20,11 +20,11 @@ const Form = ({ criteria, setCriteria }: CriteriaState) => {
   };
 
   return (
-    <div className="border-solid w-full border-2 rounded-lg bg-zinc-100 p-2 m-1 shadow-lg h-full max-w-xl">
+    <div className="border-solid w-full border-2 rounded-lg bg-zinc-100 p-2 m-1 shadow-lg min-h-[400px] max-w-xl">
       <h1 className="font-bold text-zinc-400 text-center">
         Input criteria here
       </h1>
-      <form className="flex flex-col justify-around h-full text-lg pb-5">
+      <form className="flex flex-col justify-around min-h-[400px] text-lg pb-5">
         <select
           defaultValue={"Genre"}
           className="border-solid border-2 border-zinc-200 rounded-lg  font-bold h-[40px]"

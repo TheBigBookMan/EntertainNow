@@ -112,7 +112,7 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
         )}
 
         <ul
-          className={`text-zinc-100 flex flex-col h-full overflow-y-auto md:flex-row md:flex-wrap md:justify-around md:w-full scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-sky-600  scrollbar-thumb-rounded-md scrollbar-track-rounded-lg`}
+          className={`text-zinc-100 flex flex-col h-[748px] overflow-y-auto md:flex-row md:flex-wrap md:justify-around md:w-full scrollbar-thin scrollbar-thumb-indigo-600 scrollbar-track-sky-600  scrollbar-thumb-rounded-md scrollbar-track-rounded-lg`}
         >
           {movieList.map((movie, index) => {
             return (
