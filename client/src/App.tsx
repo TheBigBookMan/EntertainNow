@@ -51,11 +51,6 @@ const client = new ApolloClient({
 //   cache: new InMemoryCache(),
 // });
 
-//!!!
-//!! CLEAN UP CLASSNAMES AND GROUP THEM DDEPENDENT ON WHAT THEY DOING- MEDIA QUERIES IN GROUPED AND FLEX PROPERTIES TOGETHER
-//!! LOOK AT CHANGE IN COLOR FOR MORE STYLE--- the linear gradient of blue and purple like background for the calm app
-//!!!! change scrollbar to look good
-
 function App() {
   const [criteria, setCriteria] = useState<Criteria>({
     genre: "",
