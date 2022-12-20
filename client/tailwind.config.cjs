@@ -8,7 +8,10 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
+  plugins: [
+    require("tailwind-scrollbar"),
+    scrollbarPlugin({ nocompatible: true }),
+  ],
   variants: {
     scrollbar: ["rounded"],
   },
