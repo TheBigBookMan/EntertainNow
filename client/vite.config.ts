@@ -7,8 +7,5 @@ export default defineConfig({
   build: {
     // generate manifest.json in outDir
     manifest: true,
-    rollupOptions: {
-      input: "./src/main.tsx",
-    },
   },
 });
