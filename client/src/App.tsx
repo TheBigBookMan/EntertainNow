@@ -17,7 +17,7 @@ import {
 import { Provider as UserProvider } from "./contexts/UserContext";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "mongodb+srv://bsmerd:Thisisthe!0211@cluster0.j1mnute.mongodb.net/entertainnow?retryWrites=true&w=majority",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
