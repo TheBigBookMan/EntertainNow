@@ -38,10 +38,6 @@ const Favourites = () => {
     nav(`/favourites/display/${input.youtube}`);
   };
 
-  if (arrayOfFavs.length === 0) {
-    return <div>Loading</div>;
-  }
-
   return (
     <div className="relative">
       {displayActive && (

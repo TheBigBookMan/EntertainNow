@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // * Mongoose schema for the user model
 const userSchema = new Schema(
@@ -46,7 +46,7 @@ userSchema.virtual("favouriteCount").get(function () {
 // * Function to hash the password
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
-    const saltRounds = 10;
+    const saltRounds = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
   next();
