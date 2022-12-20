@@ -17,7 +17,7 @@ import {
 import { Provider as UserProvider } from "./contexts/UserContext";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "https://entertainnow.herokuapp.com/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
