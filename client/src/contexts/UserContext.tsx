@@ -35,7 +35,7 @@ const [useCtx, UserProvider] = createCtx<CtxUser>();
 export const Provider = ({ children }: Prototypes) => {
   const [user, setUser] = useState<UserInfo | null>(localUser);
   const [signUpMutation, { data: signUpData, loading }] = useMutation(ADD_USER);
-  const [loginMutation, { data: loginData }] = useMutation(LOGIN);
+  const [loginMutation, { data: loginData, error }] = useMutation(LOGIN);
   const [logoutMutation] = useMutation(LOGOUT);
 
   // ? When user state changes, it is stored onto localstorage as the user
@@ -63,14 +63,19 @@ export const Provider = ({ children }: Prototypes) => {
   };
 
   //* calls the login mutation with the passed in variables
-  const loginUser = ({
+  const loginUser = async ({
     username,
     password,
   }: {
     username: string;
     password: string;
   }) => {
-    loginMutation({ variables: { username, password } });
+    try {
+      await loginMutation({ variables: { username, password } });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   };
 
   //* sets the user to null

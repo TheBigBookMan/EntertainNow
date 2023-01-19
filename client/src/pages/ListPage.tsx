@@ -14,6 +14,7 @@ import useCtx from "../contexts/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 import Display from "../components/feature/Display";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 //TODO add in toastify for favourites added and removed
 
@@ -65,6 +66,7 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
       youtube: url,
     };
     const { data } = await addFavourite({ variables });
+    toastify("add");
     if (error) console.log(error);
   };
 
@@ -78,6 +80,33 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
   //* Remove from favourites
   const removeFromFavourites = async (input: string) => {
     await removeFavourite({ variables: { image: input } });
+    toastify("remove");
+  };
+
+  const toastify = (message: string): void => {
+    if (message === "add") {
+      toast.success("Added to favourites!", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else if (message === "remove") {
+      toast.success("Removed from favourites!", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   return (
@@ -166,6 +195,18 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
           })}
         </ul>
       </Container>
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 };

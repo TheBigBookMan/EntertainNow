@@ -18,9 +18,9 @@ const SignIn = () => {
   const { loginUser } = UseUserContext();
 
   //* Submits the user signin details and redirects the user to home page
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    loginUser(loginDetails);
+    const ifLogin = await loginUser(loginDetails);
     nav("/");
   };
 
