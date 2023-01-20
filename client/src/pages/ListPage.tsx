@@ -15,6 +15,7 @@ import { ThreeDots } from "react-loader-spinner";
 import Display from "../components/feature/Display";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //TODO add in toastify for favourites added and removed
 
@@ -65,7 +66,7 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
       image: input.image,
       youtube: url,
     };
-    const { data } = await addFavourite({ variables });
+    await addFavourite({ variables });
     toastify("add");
     if (error) console.log(error);
   };
@@ -168,11 +169,7 @@ const ListPage = ({ criteria, setCriteria }: CriteriaState) => {
                     ) ? (
                       <BsSuitHeartFill
                         className="hover:cursor-pointer hover:text-lg"
-                        onClick={() =>
-                          removeFromFavourites(
-                            UsersFavourites?.favourites.image
-                          )
-                        }
+                        onClick={() => removeFromFavourites(movie.image)}
                       />
                     ) : (
                       <BsSuitHeart

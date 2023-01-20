@@ -67,7 +67,7 @@ const resolvers = {
     },
     removeFavourite: async (parent, { image }, context) => {
       if (context.user) {
-        const favourite = await Favourite.findOneAndDelete({
+        const favourite = await Favourite.findOne({
           image: image,
         });
 
